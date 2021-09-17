@@ -10,7 +10,6 @@ import { MyErrorStateMatcher } from "../login-page/login-page.component";
 export class RegisterPageComponent implements OnInit {
 
   hide = true;
-
   constructor() { }
 
   ngOnInit(): void {

@@ -11,8 +11,9 @@ import { SharedModule } from "../shared/shared.module";
 import { LoginPageComponent } from "./UI/login-page/login-page.component";
 import { RegisterPageComponent } from './UI/register-page/register-page.component';
 import { MatInputModule } from "@angular/material/input";
-import { ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "../app-routing.module";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,9 @@ import {AppRoutingModule} from "../app-routing.module";
     MatCardModule,
     MatInputModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCheckboxModule,
+    FormsModule
   ]
 })
 export class FastFoodModule { }
