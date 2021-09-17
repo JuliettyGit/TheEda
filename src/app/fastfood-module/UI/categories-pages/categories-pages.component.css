@@ -1,12 +1,12 @@
 .dish-card {
-  max-width: 300px;
-  width: 300px;
+  max-width: 1fr;
+  width: 1fr;
 }
 
 :host ::ng-deep .mat-tab-body-wrapper {
   height: 100%;
   width: 90%;
-  margin-top: 1em;
+  margin-top: 2em;
   margin-left: auto;
   margin-right: auto;
 }

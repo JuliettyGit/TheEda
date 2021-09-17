@@ -1,5 +1,5 @@
 <mat-toolbar class="w-100">
-  <h2>The Eda</h2>
+  <h2><a routerLink="/TheEda">The Eda</a></h2>
 
   <button mat-icon-button class="right">
     <mat-icon>shopping_cart</mat-icon>
@@ -9,9 +9,13 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <button mat-stroked-button
-          routerLink="login"
-          color="accent">Sign in</button>
+          routerLinkActive="active"
+          routerLink="/login"
+          color="accent">Log in
+  </button>
   <button mat-stroked-button
-          routerLink="register"
-          color="accent">Register</button>
+          routerLinkActive="active"
+          routerLink="/register"
+          color="primary">Sign up
+  </button>
 </mat-toolbar>

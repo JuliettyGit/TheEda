@@ -10,6 +10,9 @@ import { MatCardModule}  from "@angular/material/card";
 import { SharedModule } from "../shared/shared.module";
 import { LoginPageComponent } from "./UI/login-page/login-page.component";
 import { RegisterPageComponent } from './UI/register-page/register-page.component';
+import { MatInputModule } from "@angular/material/input";
+import { ReactiveFormsModule } from "@angular/forms";
+import {AppRoutingModule} from "../app-routing.module";
 
 @NgModule({
     declarations: [
@@ -29,7 +32,10 @@ import { RegisterPageComponent } from './UI/register-page/register-page.componen
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ]
 })
 export class FastFoodModule { }

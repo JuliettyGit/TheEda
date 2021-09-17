@@ -1,1 +1,39 @@
-<p>login-page works!</p>
+<form class="example-form p-3">
+  <mat-card-header>
+    <mat-card-title>Log in</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput
+           [formControl]="emailFormControl"
+           [errorStateMatcher]="matcher"
+           placeholder="Ex. pat@example.com">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter your password</mat-label>
+    <input matInput
+           [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button
+            matSuffix (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="example-button-row">
+    <button mat-raised-button color="accent">Lon in</button>
+    <button mat-raised-button
+            color="primary"
+            routerLink="/register">Sign up
+    </button>
+  </div>
+</form>

@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: '', component: SiteLayoutComponent,
-    children: [{path: 'login', component: LoginPageComponent}]
+    children: [{path: 'TheEda', component: MainPageViewComponent}]
   }
 ];
 
