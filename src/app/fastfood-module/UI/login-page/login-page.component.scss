@@ -40,10 +40,23 @@ input.example-right-align {
   color: aliceblue;
 }
 
+:host ::ng-deep .mat-form-field-wrapper{
+  margin-top: 1em;
+}
+
 .p-3{
   padding-right: 3em;
   padding-left: 3em;
   padding-bottom: 3em;
+}
+
+.example-button-row{
+  width: 100%;
+  text-align: right;
+  margin-top: 1em;
+  button{
+    margin-right: 1em;
+  }
 }
 
 

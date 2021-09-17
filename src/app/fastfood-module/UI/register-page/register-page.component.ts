@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from "@angular/forms";
-import { MyErrorStateMatcher } from "../login-page/login-page.component";
+import {MyErrorStateMatcher} from "../login-page/MyErrorStateMatcher";
+
 
 @Component({
   selector: 'app-register-page',
