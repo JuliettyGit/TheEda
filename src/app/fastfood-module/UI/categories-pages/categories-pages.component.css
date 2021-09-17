@@ -1,0 +1,21 @@
+.dish-card {
+  max-width: 300px;
+  width: 300px;
+}
+
+:host ::ng-deep .mat-tab-body-wrapper {
+  height: 100%;
+  width: 90%;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:host ::ng-deep .mat-tab-body-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+}
+
+/*# sourceMappingURL=categories-pages.component.css.map */
