@@ -45,8 +45,8 @@
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
 
-    <mat-error *ngIf="passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
-      Password should contain 8 or more symbols
+    <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+      Password should contain <strong>8 or more symbols</strong>
     </mat-error>
 
     <mat-error *ngIf="passwordFormControl.hasError('required')">

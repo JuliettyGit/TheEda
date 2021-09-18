@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Repository} from "../../Repository/Repository";
+import { Dish } from "../../Entities/Dish";
 
 @Component({
   selector: 'app-categories-pages',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesPagesComponent implements OnInit {
 
+  allDishes: Array<Dish> = new Repository().dishes;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
