@@ -14,6 +14,7 @@ import { MatInputModule } from "@angular/material/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "../app-routing.module";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatChipsModule } from "@angular/material/chips";
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     ReactiveFormsModule,
     AppRoutingModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatChipsModule
   ]
 })
 export class FastFoodModule { }

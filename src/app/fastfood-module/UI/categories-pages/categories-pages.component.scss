@@ -3,6 +3,10 @@
   width: 1fr;
 }
 
+:host ::ng-deep .mat-tab-group{
+  background-image: url("https://mamamia.ua/img/container_background_dark.jpg");
+}
+
 :host ::ng-deep .mat-tab-body-wrapper {
   height: 100%;
   width: 90%;
@@ -18,4 +22,18 @@
   grid-row-gap: 1em;
 }
 
+:host ::ng-deep .mat-card-image{
+  height: 200px;
+}
 
+:host ::ng-deep .mat-card-title{
+  margin-bottom: 1em;
+}
+
+:host ::ng-deep .mat-card-actions{
+  text-align: center;
+  span{
+    margin-right: 0.5em;
+    font-size: 1.5em;
+  }
+}
