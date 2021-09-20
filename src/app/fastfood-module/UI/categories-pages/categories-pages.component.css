@@ -1,21 +1,57 @@
-.dish-card {
-  max-width: 1fr;
-  width: 1fr;
+:host ::ng-deep .mat-tab-group {
+  background-image: url("https://mamamia.ua/img/container_background_dark.jpg");
+  background-position: center top;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 :host ::ng-deep .mat-tab-body-wrapper {
-  height: 100%;
   width: 90%;
-  margin-top: 2em;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 2em auto 3em;
 }
 
 :host ::ng-deep .mat-tab-body-content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
+  grid-column-gap: 1.5em;
+  grid-row-gap: 1.5em;
+}
+
+:host ::ng-deep .mat-card {
+  max-width: 1fr;
+  width: 1fr;
+  height: 380px;
+  border-radius: 1em;
+}
+:host ::ng-deep .mat-card:hover {
+  box-shadow: 1px 1px 39px -5px rgba(255, 255, 255, 0.2);
+}
+
+:host ::ng-deep .mat-card-image {
+  height: 200px;
+}
+
+:host ::ng-deep .mat-card-title {
+  margin-bottom: 1em;
+}
+
+:host ::ng-deep .mat-card-actions {
+  text-align: center;
+  padding: 0;
+}
+:host ::ng-deep .mat-card-actions span {
+  margin-right: 0.5em;
+  font-size: 1.5em;
+}
+
+:host ::ng-deep .mat-card-content {
+  height: 5em;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+:host ::ng-deep .mat-card-content::-webkit-scrollbar {
+  width: 0;
 }
 
 /*# sourceMappingURL=categories-pages.component.css.map */

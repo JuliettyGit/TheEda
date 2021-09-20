@@ -15,13 +15,17 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "../app-routing.module";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
+import { StoreModule } from "@ngrx/store";
+import { APP_REDUCER_NODE, mainReducer } from "./store/reducers/reducer";
+import { DishInfoDialogComponent } from './UI/modal-dialogs/dish-info-dialog/dish-info-dialog.component';
 
 @NgModule({
     declarations: [
       MainPageViewComponent,
       CategoriesPagesComponent,
       LoginPageComponent,
-      RegisterPageComponent
+      RegisterPageComponent,
+      DishInfoDialogComponent
     ],
   exports: [
     MainPageViewComponent,
@@ -40,7 +44,8 @@ import { MatChipsModule } from "@angular/material/chips";
     AppRoutingModule,
     MatCheckboxModule,
     FormsModule,
-    MatChipsModule
+    MatChipsModule,
+    StoreModule.forFeature(APP_REDUCER_NODE, mainReducer)
   ]
 })
 export class FastFoodModule { }

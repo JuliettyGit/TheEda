@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Repository} from "../../Repository/Repository";
-import { Dish } from "../../Entities/Dish";
+import { Component, Input, OnInit } from '@angular/core';
+import { IDish } from "../../Interfaces/IDish";
 
 @Component({
   selector: 'app-categories-pages',
@@ -9,9 +8,20 @@ import { Dish } from "../../Entities/Dish";
 })
 export class CategoriesPagesComponent implements OnInit {
 
-  allDishes: Array<Dish> = new Repository().dishes;
+  // allDishes: Array<IDish> = initialAppState.dishList;
+  @Input()
+  pizzasList!: Array<IDish>;
 
-  constructor() { }
+  @Input()
+  potatoList!: Array<IDish>;
+
+  @Input()
+  saladsList!: Array<IDish>;
+
+  @Input()
+  desertsList!: Array<IDish>;
+
+  constructor( ) {}
 
   ngOnInit(): void { }
 
