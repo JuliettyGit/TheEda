@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"dish-info-dialog.component.css"}
+{"version":3,"sourceRoot":"","sources":["dish-info-dialog.component.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;;AAEA;EACE;EACA;EACA;EACA;;;AAIJ;EACE;;AACA;EACE;EACA","file":"dish-info-dialog.component.css"}

@@ -24,6 +24,7 @@
   width: 1fr;
   height: 380px;
   border-radius: 1em;
+  padding-bottom: 0;
   &:hover{
     box-shadow: 1px 1px 39px -5px rgba(255, 255, 255, 0.2);
   }
@@ -34,14 +35,22 @@
 
 :host ::ng-deep .mat-card-title{
   margin-bottom: 1em;
+  mat-icon{
+    float: right;
+  }
 }
 
 :host ::ng-deep .mat-card-actions{
   text-align: center;
   padding: 0;
-  span{
-    margin-right: 0.5em;
-    font-size: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+
+  .price{
+    margin-left: 0.5em;
+    font-size: 1.3em;
+    color: aliceblue;
   }
 }
 

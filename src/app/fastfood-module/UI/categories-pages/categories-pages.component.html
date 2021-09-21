@@ -5,9 +5,12 @@
 
     <mat-card *ngFor="let dish of pizzasList">
       <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
-      <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-header>
-      </mat-card-header>
+      <mat-card-title>{{dish.name}}
+        <mat-icon (click)="openInfoDialog(dish)"
+          matTooltip="Show details"
+          color="primary">
+          info</mat-icon>
+      </mat-card-title>
       <mat-card-content>
         <p>
           <mat-chip-list aria-label="Fish selection">
@@ -16,8 +19,8 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <span>{{dish.price}}</span>
-        <button mat-button>ORDER</button>
+        <button mat-button class="price">{{dish.price}}</button>
+        <button mat-stroked-button color="accent">Order</button>
       </mat-card-actions>
     </mat-card>
 
@@ -28,8 +31,6 @@
     <mat-card *ngFor="let dish of potatoList">
       <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
       <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-header>
-      </mat-card-header>
       <mat-card-content>
         <p>
           <mat-chip-list aria-label="Fish selection">
@@ -38,8 +39,8 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <span>{{dish.price}}</span>
-        <button mat-button>ORDER</button>
+        <button mat-button class="price">{{dish.price}}</button>
+        <button mat-stroked-button color="accent">Order</button>
       </mat-card-actions>
     </mat-card>
   </mat-tab>
@@ -48,8 +49,6 @@
     <mat-card *ngFor="let dish of saladsList">
       <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
       <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-header>
-      </mat-card-header>
       <mat-card-content>
         <p>
           <mat-chip-list aria-label="Fish selection">
@@ -58,8 +57,8 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <span>{{dish.price}}</span>
-        <button mat-button>ORDER</button>
+        <button mat-button class="price">{{dish.price}}</button>
+        <button mat-stroked-button color="accent">Order</button>
       </mat-card-actions>
     </mat-card>
   </mat-tab>
@@ -68,8 +67,6 @@
     <mat-card *ngFor="let dish of desertsList">
       <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
       <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-header>
-      </mat-card-header>
       <mat-card-content>
         <p>
           <mat-chip-list aria-label="Fish selection">
@@ -78,8 +75,8 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <span>{{dish.price}}</span>
-        <button mat-button>ORDER</button>
+        <button mat-button class="price">{{dish.price}}</button>
+        <button mat-stroked-button color="accent">Order</button>
       </mat-card-actions>
     </mat-card>
   </mat-tab>

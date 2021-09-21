@@ -18,6 +18,8 @@ import { MatChipsModule } from "@angular/material/chips";
 import { StoreModule } from "@ngrx/store";
 import { APP_REDUCER_NODE, mainReducer } from "./store/reducers/reducer";
 import { DishInfoDialogComponent } from './UI/modal-dialogs/dish-info-dialog/dish-info-dialog.component';
+import { MatTooltipModule } from "@angular/material/tooltip";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
     declarations: [
@@ -45,7 +47,9 @@ import { DishInfoDialogComponent } from './UI/modal-dialogs/dish-info-dialog/dis
     MatCheckboxModule,
     FormsModule,
     MatChipsModule,
-    StoreModule.forFeature(APP_REDUCER_NODE, mainReducer)
+    StoreModule.forFeature(APP_REDUCER_NODE, mainReducer),
+    MatTooltipModule,
+    MatDialogModule
   ]
 })
 export class FastFoodModule { }
