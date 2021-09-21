@@ -9,6 +9,7 @@ import {
   potatoListSelector,
   saladListSelector
 } from "../../store/selectors/selectors";
+import {orderListSelector} from "../../store/selectors/orderSelector";
 
 @Component({
   selector: 'app-main-page-view',
@@ -21,6 +22,7 @@ export class MainPageViewComponent implements OnInit {
   potatoList$: Observable<Array<IDish>> = this.store$.pipe(select(potatoListSelector));
   saladsList$: Observable<Array<IDish>> = this.store$.pipe(select(saladListSelector));
   desertsList$: Observable<Array<IDish>> = this.store$.pipe(select(desertsListSelector));
+  orderList$: Observable<Array<IDish>> = this.store$.pipe(select(orderListSelector))
 
   constructor( private store$: Store<IState> ) { }
 

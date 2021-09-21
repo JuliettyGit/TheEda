@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IDish} from "../../../fastfood-module/Interfaces/IDish";
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Input()
+  orderList!: Array<IDish>
 
   constructor() { }
 

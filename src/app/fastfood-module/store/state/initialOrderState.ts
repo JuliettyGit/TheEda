@@ -1,5 +1,5 @@
-import { IState} from "../../Interfaces/IState";
+import {IOrderState} from "../../Interfaces/IOrderState";
 
-export const initialOrderState: IState = {
-  dishList: []
+export const initialOrderState: IOrderState = {
+  orderList: []
 }

@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IDish } from "../../Interfaces/IDish";
 import { MatDialog } from "@angular/material/dialog";
 import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
+import { Store } from '@ngrx/store';
+import {IState} from "../../Interfaces/IState";
+import {AddToOrder} from "../../store/actions/orderAction";
 
 @Component({
   selector: 'app-categories-pages',
@@ -22,7 +25,8 @@ export class CategoriesPagesComponent implements OnInit {
   @Input()
   desertsList!: Array<IDish>;
 
-  constructor( public dialog: MatDialog, ) {}
+  constructor( public dialog: MatDialog,
+               private store$: Store<IState>) {}
 
   ngOnInit(): void { }
 
@@ -37,5 +41,9 @@ export class CategoriesPagesComponent implements OnInit {
         category: dish.category
       }
     });
+  }
+
+  addToOrder(dish: IDish){
+    this.store$.dispatch(new AddToOrder(dish))
   }
 }

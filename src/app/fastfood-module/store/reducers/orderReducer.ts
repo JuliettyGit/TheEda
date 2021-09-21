@@ -9,7 +9,8 @@ export const orderReducer = (state = initialOrderState, action: OrderActions) =>
   {
     case userActionsType.addToOrder:
       return {
-        ...state
+        ...state,
+        orderList: [...state.orderList, action.payload]
       }
   }
   return state

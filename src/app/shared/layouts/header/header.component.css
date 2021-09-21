@@ -3,4 +3,21 @@ a {
   text-decoration: none;
 }
 
+:host ::ng-deep .mat-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+:host ::ng-deep .mat-toolbar button {
+  margin-right: 1em;
+}
+:host ::ng-deep .mat-toolbar button :last-child {
+  margin-right: 0;
+}
+:host ::ng-deep .mat-toolbar button :first-child {
+  margin-right: 0;
+}
+
 /*# sourceMappingURL=header.component.css.map */

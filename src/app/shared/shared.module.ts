@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from "./layouts/header/header.component";
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { MatBadgeModule } from "@angular/material/badge";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+
+import { HeaderComponent } from "./layouts/header/header.component";
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AppRoutingModule } from "../app-routing.module";
 import { SiteLayoutComponent } from "./layouts/site-layout/site-layout.component";
 
@@ -21,7 +23,8 @@ import { SiteLayoutComponent } from "./layouts/site-layout/site-layout.component
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatBadgeModule
   ],
   exports: [
     HeaderComponent

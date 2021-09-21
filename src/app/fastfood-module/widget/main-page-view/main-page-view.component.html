@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [orderList]="orderList$ | async"></app-header>
 <app-categories-pages [pizzasList]="pizzasList$ | async"
                       [potatoList]="potatoList$ | async"
                       [saladsList]="saladsList$ | async"
