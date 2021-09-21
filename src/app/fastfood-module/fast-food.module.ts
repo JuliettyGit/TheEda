@@ -16,10 +16,11 @@ import { AppRoutingModule } from "../app-routing.module";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
 import { StoreModule } from "@ngrx/store";
-import { APP_REDUCER_NODE, mainReducer } from "./store/reducers/reducer";
+import { APP_REDUCER_NODE, dishListReducer } from "./store/reducers/reducer";
 import { DishInfoDialogComponent } from './UI/modal-dialogs/dish-info-dialog/dish-info-dialog.component';
 import { MatTooltipModule } from "@angular/material/tooltip";
-import {MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ODER_REDUCER_NODE, orderReducer } from "./store/reducers/orderReducer";
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatCheckboxModule,
     FormsModule,
     MatChipsModule,
-    StoreModule.forFeature(APP_REDUCER_NODE, mainReducer),
+    StoreModule.forFeature(APP_REDUCER_NODE, dishListReducer),
+    StoreModule.forFeature(ODER_REDUCER_NODE, orderReducer),
     MatTooltipModule,
     MatDialogModule
   ]

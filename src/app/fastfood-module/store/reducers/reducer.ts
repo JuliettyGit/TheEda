@@ -1,16 +1,9 @@
 import { initialAppState } from "../state/initialAppState";
-import { AppActions, userActionsType} from "../actions/actions";
+import { DishListActions } from "../actions/dishListActions";
 
-export const APP_REDUCER_NODE = "mainReducer"
+export const APP_REDUCER_NODE = "dishListReducer"
 
-export const mainReducer = (state = initialAppState, action: AppActions) =>
+export const dishListReducer = (state = initialAppState, action: DishListActions) =>
   {
-    switch (action.type)
-    {
-      case userActionsType.addToBookingCard:
-        return {
-          ...state
-        }
-    }
     return state
   };
