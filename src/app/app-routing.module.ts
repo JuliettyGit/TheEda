@@ -5,6 +5,8 @@ import { LoginPageComponent } from "./fastfood-module/UI/login-page/login-page.c
 import { AuthLayoutComponent } from "./shared/layouts/auth-layout/auth-layout.component";
 import { SiteLayoutComponent } from "./shared/layouts/site-layout/site-layout.component";
 import { RegisterPageComponent } from "./fastfood-module/UI/register-page/register-page.component";
+import { WidgetComponent } from "./admin-module/widget/widget.component";
+import { OrderPageComponent } from "./fastfood-module/UI/order-page/order-page.component";
 
 const routes: Routes = [
   {
@@ -18,7 +20,9 @@ const routes: Routes = [
     path: '', component: SiteLayoutComponent,
     children: [{path: '', redirectTo: '/TheEda', pathMatch: 'full'},
       {path: '*', redirectTo: '/TheEda'},
-      {path: 'TheEda', component: MainPageViewComponent}]
+      {path: 'TheEda', component: MainPageViewComponent},
+      {path: 'admin', component: WidgetComponent},
+      {path: 'order', component: OrderPageComponent}]
   }
 ];
 

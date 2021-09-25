@@ -1,91 +1,36 @@
 <mat-tab-group mat-align-tabs="center"
                color="accent"
-               backgroundColor="primary">
-  <mat-tab label="Pizza">
+               backgroundColor="primary"
+               class="my-tab-group">
+  <mat-tab *ngFor="let category of categories" label="{{category.name}}">
 
-    <mat-card *ngFor="let dish of pizzasList">
-      <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
-      <mat-card-title>{{dish.name}}
-        <mat-icon (click)="openInfoDialog(dish)"
-          matTooltip="Show details"
-          color="primary">
-          info</mat-icon>
-      </mat-card-title>
-      <mat-card-content>
-        <p>
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}<mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-          </mat-chip-list>
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button class="price">{{dish.price}}</button>
-        <button mat-stroked-button
-                color="accent"
-                (click)="addToOrder(dish)">Order</button>
-      </mat-card-actions>
-    </mat-card>
-
-  </mat-tab>
-
-  <mat-tab label="Potato">
-
-    <mat-card *ngFor="let dish of potatoList">
-      <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
-      <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-content>
-        <p>
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}<mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-          </mat-chip-list>
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button class="price">{{dish.price}}</button>
-        <button mat-stroked-button
-                color="accent"
-                (click)="addToOrder(dish)">Order</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-tab>
-
-  <mat-tab label="Salad">
-    <mat-card *ngFor="let dish of saladsList">
-      <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
-      <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-content>
-        <p>
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}<mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-          </mat-chip-list>
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button class="price">{{dish.price}}</button>
-        <button mat-stroked-button
-                color="accent"
-                (click)="addToOrder(dish)">Order</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-tab>
-
-  <mat-tab label="Deserts">
-    <mat-card *ngFor="let dish of desertsList">
-      <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
-      <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-content>
-        <p>
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}<mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-          </mat-chip-list>
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button class="price">{{dish.price}}</button>
-        <button mat-stroked-button
-                color="accent"
-                (click)="addToOrder(dish)">Order</button>
-      </mat-card-actions>
-    </mat-card>
+    <ng-container *ngFor="let dish of dishList">
+          <ng-container *ngIf="dish.category == category.name">
+            <mat-card>
+              <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
+              <mat-card-title>{{dish.name}}
+                <mat-icon (click)="openInfoDialog(dish)"
+                          matTooltip="Show details"
+                          color="primary">
+                  info
+                </mat-icon>
+              </mat-card-title>
+              <mat-card-content>
+                <p>
+                  <mat-chip-list aria-label="Fish selection">
+                    <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}</mat-chip>
+                  </mat-chip-list>
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button class="price">{{dish.price}} $</button>
+                <button mat-stroked-button
+                        color="accent"
+                        (click)="addToOrder(dish, dish.name, dish.img, dish.price, dish.ingredients, dish.category)">Order
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </ng-container>
+    </ng-container>
   </mat-tab>
 </mat-tab-group>

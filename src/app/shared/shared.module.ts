@@ -9,6 +9,7 @@ import { HeaderComponent } from "./layouts/header/header.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AppRoutingModule } from "../app-routing.module";
 import { SiteLayoutComponent } from "./layouts/site-layout/site-layout.component";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -18,14 +19,15 @@ import { SiteLayoutComponent } from "./layouts/site-layout/site-layout.component
     AuthLayoutComponent,
     SiteLayoutComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    AppRoutingModule,
-    MatBadgeModule
-  ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        AppRoutingModule,
+        MatBadgeModule,
+        FormsModule
+    ],
   exports: [
     HeaderComponent
   ]

@@ -2,10 +2,11 @@
   <h2><a routerLink="/TheEda">TheEda</a></h2>
 
   <div class="right">
-    <button mat-icon-button class="right">
+    <button mat-icon-button class="right" routerLink="/order">
       <mat-icon [matBadgeHidden]="orderList.length === 0"
                 [matBadge]="orderList.length"
-                matBadgeColor="accent">shopping_cart</mat-icon>
+                matBadgeColor="accent">shopping_cart
+      </mat-icon>
     </button>
 
     <button mat-icon-button class="right">

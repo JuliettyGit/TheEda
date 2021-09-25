@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>Creating New Dish</h1>
+
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter dish name</mat-label>
+    <input matInput
+           name="newDishName"
+           [(ngModel)]="newDishName"
+           autocomplete="off"
+           [formControl]="dishTitle"
+           required>
+    <mat-error *ngIf="dishTitle.invalid">Cannot add dish without name</mat-error>
+  </mat-form-field>
+</div>
+
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter link to dish photo</mat-label>
+    <input matInput
+           [(ngModel)]="newDishImg"
+           autocomplete="off"
+           [formControl]="dishImg"
+           required>
+    <mat-error *ngIf="dishImg.invalid">Cannot add dish without image</mat-error>
+  </mat-form-field>
+</div>
+
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter price</mat-label>
+    <input matInput
+           [(ngModel)]="newDishPrice"
+           autocomplete="off"
+           [formControl]="dishPrice"
+           required>
+    <mat-error *ngIf="dishPrice.hasError('required')">Cannot add dish without price</mat-error>
+    <mat-error *ngIf="dishPrice.hasError('pattern') && !dishPrice.hasError('required')">Number Only</mat-error>
+
+  </mat-form-field>
+</div>
+
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter dish ingredients</mat-label>
+    <input matInput
+           [(ngModel)]="newDishIngredients"
+           autocomplete="off"
+           [formControl]="dishIngredients"
+           required>
+    <mat-error *ngIf="dishIngredients.invalid">Cannot add dish without ingredients</mat-error>
+  </mat-form-field>
+</div>
+
+<mat-form-field appearance="fill">
+  <mat-label>Select category</mat-label>
+  <mat-select [(ngModel)]="newDishCategory"
+              [formControl]="dishCategory"
+              required>
+    <mat-option *ngFor="let category of categoryList"
+                [value]="category.name">
+      {{category.name}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="dishCategory.invalid">Cannot add dish without category</mat-error>
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-stroked-button
+          mat-dialog-close (click)="close()">Close</button>
+  <button mat-stroked-button
+          [disabled]="dishTitle.invalid || dishImg.invalid || dishPrice.invalid || dishCategory.invalid"
+          color="accent" (click)="createNewDish(newDishName, newDishImg, newDishPrice, newDishIngredients, newDishCategory)">
+    Save
+  </button>
+</div>

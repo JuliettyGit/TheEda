@@ -1,10 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IDish } from "../../Interfaces/IDish";
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
 import { Store } from '@ngrx/store';
-import {IState} from "../../Interfaces/IState";
-import {AddToOrder} from "../../store/actions/orderAction";
+import { HttpClient } from "@angular/common/http";
+
+import { IState } from "../../Interfaces/IState";
+import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
+import { AddToOrder } from "../../../shared/store/actions/orderAction";
+import { ICategory } from "../../Interfaces/ICategory";
+import { IDish } from "../../Interfaces/IDish";
+import { DishCategoriesService } from "../../../shared/services/dish-categories.service";
+import { DishListService } from "../../../shared/services/dish-list.service";
+import { orderListService } from "../../../shared/services/order-list.service";
+import { IIngredient } from "../../Interfaces/IIngredient";
 
 @Component({
   selector: 'app-categories-pages',
@@ -13,25 +20,32 @@ import {AddToOrder} from "../../store/actions/orderAction";
 })
 export class CategoriesPagesComponent implements OnInit {
 
-  @Input()
-  pizzasList!: Array<IDish>;
+  categories: Array<ICategory> = [];
+  dishList: Array<IDish> = [];
+  orderList: Array<IDish> = [];
 
-  @Input()
-  potatoList!: Array<IDish>;
+  constructor( private http: HttpClient,
+               private dishCategories: DishCategoriesService,
+               private dishListService: DishListService,
+               private orderListService: orderListService,
+               public dialog: MatDialog,
+               private store$: Store<IState>) {
+  }
 
-  @Input()
-  saladsList!: Array<IDish>;
-
-  @Input()
-  desertsList!: Array<IDish>;
-
-  constructor( public dialog: MatDialog,
-               private store$: Store<IState>) {}
-
-  ngOnInit(): void { }
-
-  openInfoDialog(dish: IDish)
+  ngOnInit()
   {
+    this.dishCategories.getDishCategories()
+      .subscribe((categories: ICategory[]) => {
+        this.categories = categories
+      });
+
+    this.dishListService.getDishList()
+      .subscribe((dishes: IDish[]) => {
+        this.dishList = dishes
+      });
+  }
+
+  openInfoDialog(dish: IDish) {
     this.dialog.open(DishInfoDialogComponent, {
       data: {
         name: dish.name,
@@ -43,7 +57,14 @@ export class CategoriesPagesComponent implements OnInit {
     });
   }
 
-  addToOrder(dish: IDish){
-    this.store$.dispatch(new AddToOrder(dish))
+
+  addToOrder(dish: IDish, name: string, img: string, price: number, ingredients: Array<IIngredient>, category: string)
+  {
+    this.orderListService.addToOrderList(name, img, price, ingredients, category)
+      .subscribe((dish: IDish) => {
+        this.orderList.push(dish)
+      });
+
+    this.store$.dispatch(new AddToOrder(dish));
   }
 }

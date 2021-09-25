@@ -1,5 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import {Dish} from "../../../../shared/Entities/Dish";
+import {AddToOrder} from "../../../../shared/store/actions/orderAction";
+import {Store} from "@ngrx/store";
+import {IState} from "../../../Interfaces/IState";
 import {IDish} from "../../../Interfaces/IDish";
 
 @Component({
@@ -11,7 +15,8 @@ export class DishInfoDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<DishInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA)
-              public data: IDish) { }
+              public data: IDish,
+              private store$: Store<IState>){ }
 
   ngOnInit(): void {
   }
@@ -21,4 +26,7 @@ export class DishInfoDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  addToOrder(dish: IDish) {
+    this.store$.dispatch(new AddToOrder(dish));
+  }
 }
