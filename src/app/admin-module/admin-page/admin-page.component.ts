@@ -3,8 +3,6 @@ import { MatDialog } from "@angular/material/dialog";
 import { FormControl, Validators } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 
-import { Category } from "../../shared/Entities/Category";
-import { Repository } from "../../shared/Repository/Repository";
 import { AddDishModalComponent } from "../modals/add-dish-modal/add-dish-modal.component";
 import { ICategory } from "../../fastfood-module/Interfaces/ICategory";
 import { IDish} from "../../fastfood-module/Interfaces/IDish";
@@ -81,11 +79,11 @@ export class AdminPageComponent implements OnInit {
     this.categoryToDelete = 0;
   }
 
-  deleteDish(dishTODelete: number)
+  deleteDish(dishToDeleteID: number)
   {
-    this.dishListService.deleteDish(dishTODelete)
+    this.dishListService.deleteDish(dishToDeleteID)
       .subscribe(() =>{
-        this.dishList = this.dishList.filter(dish => dish.id !== dishTODelete);
+        this.dishList = this.dishList.filter(dish => dish.id !== dishToDeleteID);
       })
   }
 

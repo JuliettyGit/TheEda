@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+
 import { IDish } from "../../fastfood-module/Interfaces/IDish";
 import { IIngredient } from "../../fastfood-module/Interfaces/IIngredient";
 
@@ -27,8 +28,8 @@ export class DishListService {
     return this.http.post<IDish>('http://localhost:3000/dishes', dish);
   }
 
-  deleteDish(category: number): Observable<{}>
+  deleteDish(dishToDeleteID: number): Observable<{}>
   {
-    return this.http.delete(`http://localhost:3000/dishes/${category}`)
+    return this.http.delete(`http://localhost:3000/dishes/${dishToDeleteID}`)
   }
 }

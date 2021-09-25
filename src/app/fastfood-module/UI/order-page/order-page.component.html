@@ -1,0 +1,37 @@
+<app-header></app-header>
+<mat-tab-group mat-align-tabs="center"
+               color="accent"
+               backgroundColor="primary"
+               class="my-tab-group">
+  <mat-tab label="Your Order">
+
+    <mat-card *ngFor="let dish of orderList">
+      <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
+      <mat-card-title>{{dish.name}}
+        <mat-icon (click)="openInfoDialog(dish)"
+                  matTooltip="Show details"
+                  color="primary">
+          info
+        </mat-icon>
+      </mat-card-title>
+      <mat-card-content>
+        <p>
+          <mat-chip-list aria-label="Fish selection">
+            <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}</mat-chip>
+          </mat-chip-list>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button class="price">{{dish.price}} $</button>
+        <button mat-raised-button
+                color="warn"
+                (click)="removeFromOrder(dish.id)">-
+        </button>
+        <button mat-raised-button
+                color="accent"
+                (click)="addToOrder(dish, dish.name, dish.img, dish.price, dish.ingredients, dish.category)">+
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
