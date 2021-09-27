@@ -11,9 +11,8 @@ import { FastFoodModule } from "./fastfood-module/fast-food.module";
 import { SharedModule } from "./shared/shared.module";
 import { environment } from '../environments/environment';
 import { AdminModuleModule } from "./admin-module/admin-module.module";
-// import { APP_REDUCER_NODE, dishListReducer } from "./shared/store/reducers/reducer";
-import {ODER_REDUCER_NODE, orderReducer} from "./shared/store/reducers/orderReducer";
-import {orderListService} from "./shared/services/order-list.service";
+import { ODER_REDUCER_NODE, orderReducer } from "./shared/store/reducers/orderReducer";
+import { orderListService } from "./shared/services/order-list.service";
 
 @NgModule({
   declarations: [
@@ -27,12 +26,15 @@ import {orderListService} from "./shared/services/order-list.service";
     SharedModule,
     AdminModuleModule,
     HttpClientModule,
-    // StoreModule.forFeature(APP_REDUCER_NODE, dishListReducer),
     StoreModule.forFeature(ODER_REDUCER_NODE, orderReducer),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [orderListService],
-  bootstrap: [AppComponent]
+  providers: [
+      orderListService
+    ],
+  bootstrap: [
+      AppComponent
+    ]
 })
 export class AppModule { }

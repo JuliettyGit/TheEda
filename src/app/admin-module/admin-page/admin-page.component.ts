@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { FormControl, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
 
 import { AddDishModalComponent } from "../modals/add-dish-modal/add-dish-modal.component";
-import { ICategory } from "../../fastfood-module/Interfaces/ICategory";
-import { IDish} from "../../fastfood-module/Interfaces/IDish";
+import { ICategory } from "../../shared/Interfaces/ICategory";
+import { IDish} from "../../shared/Interfaces/IDish";
 import { DishCategoriesService } from "../../shared/services/dish-categories.service";
 import { DishListService } from "../../shared/services/dish-list.service";
+import { AlertModalComponent } from "../../shared/modals/alert-modal/alert-modal.component";
 
 @Component({
   selector: 'app-admin-page',
@@ -25,8 +25,7 @@ export class AdminPageComponent implements OnInit {
   newCategoryName!: string;
 
 
-  constructor( private http: HttpClient,
-               private dishCategoriesService: DishCategoriesService,
+  constructor( private dishCategoriesService: DishCategoriesService,
                private dishListService: DishListService,
                public dialog: MatDialog ) { }
 
@@ -47,7 +46,8 @@ export class AdminPageComponent implements OnInit {
   {
     if(this.categoryExist(name))
     {
-      this.newCategoryName = "This category already exists"
+      const alertText = "This category has already exists";
+      this.openAlertDialog(alertText);
       return false
     }
     else
@@ -77,6 +77,8 @@ export class AdminPageComponent implements OnInit {
         this.categories = this.categories.filter(category => category.id !== categoryToDelete);
       });
     this.categoryToDelete = 0;
+
+    window.location.reload();
   }
 
   deleteDish(dishToDeleteID: number)
@@ -89,21 +91,13 @@ export class AdminPageComponent implements OnInit {
 
   openAddNewDishDialog()
   {
-    this.dialog.open(AddDishModalComponent)
+    this.dialog.open(AddDishModalComponent);
   }
 
-
-
-  //
-  // addNewCategory(categoryName: string){
-  //   if(this.categoryExist(categoryName))
-  //   {
-  //     return false
-  //   }
-  //   else
-  //   {
-  //     Repository.CategoryList.push(new Category(categoryName));
-  //     return true
-  //   }
-  // }
+  openAlertDialog(alertText: string): void
+  {
+    this.dialog.open(AlertModalComponent, {
+      data: alertText
+    });
+  }
 }

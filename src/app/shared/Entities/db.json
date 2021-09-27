@@ -581,44 +581,73 @@
         }
       ],
       "category": "Pizza",
-      "id": 2
+      "id": 22
     },
     {
-      "name": "Vegan",
-      "img": "https://media.dominos.ua/__sized__/menu/product_osg_image_category/2019/10/04/%D0%BE%D0%B2%D0%BE%D1%87%D1%8D%D0%B2%D0%B0_%D1%84%D1%8D%D0%B5%D1%80%D0%B8%D1%8F_300dpi-min-thumbnail-960x960-70.jpg",
-      "price": 1.5,
+      "name": "Carbonara",
+      "img": "https://media.dominos.ua/__sized__/menu/product_osg_image_category/2019/10/04/%D0%9A%D0%B0%D1%80%D0%B1%D0%BE%D0%BD%D0%B0%D1%80%D0%B0_300dpi-min-thumbnail-960x960-70.jpg",
+      "price": 5,
       "ingredients": [
         {
-          "name": "bell pepper",
-          "price": 1
-        },
-        {
-          "name": "olives",
-          "price": 1
-        },
-        {
           "name": "onion",
-          "price": 0.5
-        },
-        {
-          "name": "mushrooms",
           "price": 1
         },
         {
-          "name": "tomatoes",
-          "price": 0.5
+          "name": "bacon",
+          "price": 2
+        },
+        {
+          "name": "ham",
+          "price": 2
         },
         {
           "name": "mozzarella",
           "price": 1
         },
         {
-          "name": "cream souse",
+          "name": "mushrooms",
+          "price": 1
+        },
+        {
+          "name": "alfredo souse",
           "price": 0.5
         }
       ],
       "category": "Pizza",
-      "id": 3
+      "id": 23
+    },
+    {
+      "name": "Carbonara",
+      "img": "https://media.dominos.ua/__sized__/menu/product_osg_image_category/2019/10/04/%D0%9A%D0%B0%D1%80%D0%B1%D0%BE%D0%BD%D0%B0%D1%80%D0%B0_300dpi-min-thumbnail-960x960-70.jpg",
+      "price": 5,
+      "ingredients": [
+        {
+          "name": "onion",
+          "price": 1
+        },
+        {
+          "name": "bacon",
+          "price": 2
+        },
+        {
+          "name": "ham",
+          "price": 2
+        },
+        {
+          "name": "mozzarella",
+          "price": 1
+        },
+        {
+          "name": "mushrooms",
+          "price": 1
+        },
+        {
+          "name": "alfredo souse",
+          "price": 0.5
+        }
+      ],
+      "category": "Pizza",
+      "id": 24
     }
   ],
   "users": [
@@ -628,6 +657,20 @@
       "email": "juliyareimer@gmail.com",
       "password": "qwe123",
       "isAdmin": "false"
+    },
+    {
+      "name": "qwe",
+      "email": "qwe",
+      "password": "we",
+      "id": 2
+    }
+  ],
+  "admins": [
+    {
+      "name": "qwe",
+      "email": "qwe",
+      "password": "qwe",
+      "id": 1
     }
   ]
 }

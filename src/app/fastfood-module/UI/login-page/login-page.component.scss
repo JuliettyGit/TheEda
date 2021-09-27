@@ -6,7 +6,7 @@
   max-width: 400px;
   width: 100%;
   border-radius: 2em;
-  background-color: #bdbdbd;
+  background-color: #5339a2;
 }
 
 .example-full-width {
@@ -60,3 +60,9 @@ input.example-right-align {
 }
 
 
+.center{
+  text-align: center;
+  .link{
+    cursor: pointer;
+  }
+}

@@ -1,4 +1,4 @@
-import { IOrderState } from "../../../fastfood-module/Interfaces/IOrderState";
+import { IOrderState } from "../../Interfaces/IOrderState";
 
 export const initialOrderState: IOrderState = {
   orderList: []

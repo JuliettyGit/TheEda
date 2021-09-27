@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {IState} from "../../../fastfood-module/Interfaces/IState";
-import {Store} from "@ngrx/store";
-import {MatDialogRef} from "@angular/material/dialog";
-import {HttpClient} from "@angular/common/http";
-import {DishCategoriesService} from "../../../shared/services/dish-categories.service";
-import {DishListService} from "../../../shared/services/dish-list.service";
-import {IDish} from "../../../fastfood-module/Interfaces/IDish";
-import {IIngredient} from "../../../fastfood-module/Interfaces/IIngredient";
-import {ICategory} from "../../../fastfood-module/Interfaces/ICategory";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { HttpClient } from "@angular/common/http";
+
+import { DishCategoriesService } from "../../../shared/services/dish-categories.service";
+import { DishListService } from "../../../shared/services/dish-list.service";
+import { IDish } from "../../../shared/Interfaces/IDish";
+import { IIngredient } from "../../../shared/Interfaces/IIngredient";
+import { ICategory } from "../../../shared/Interfaces/ICategory";
+import { AlertModalComponent } from "../../../shared/modals/alert-modal/alert-modal.component";
 
 @Component({
   selector: 'app-add-dish-modal',
@@ -26,7 +26,6 @@ export class AddDishModalComponent implements OnInit {
   dishIngredients = new FormControl('', [Validators.required]);
   dishCategory = new FormControl('', [Validators.required]);
 
-  newDish!: IDish;
   newDishName!: string
   newDishImg!: string
   newDishPrice!: number;
@@ -35,8 +34,9 @@ export class AddDishModalComponent implements OnInit {
 
   constructor( private http: HttpClient,
                private dishCategoriesService: DishCategoriesService,
-               private dishListService: DishListService,private store$: Store<IState>,
-               public dialogRef: MatDialogRef<AddDishModalComponent>) { }
+               private dishListService: DishListService,
+               public dialogRef: MatDialogRef<AddDishModalComponent>,
+               public dialog: MatDialog ) { }
 
   ngOnInit(): void {
     this.dishCategoriesService.getDishCategories()
@@ -62,6 +62,8 @@ export class AddDishModalComponent implements OnInit {
   {
     if(this.dishExist(newDishName))
     {
+      const alertText = "This dish has already exists";
+      this.openAlertDialog(alertText);
       return false
     }
 
@@ -72,7 +74,9 @@ export class AddDishModalComponent implements OnInit {
           console.log(newDish)
           this.dishList.push(newDish)
 
-        })
+        });
+      close();
+      window.location.reload();
       return true
     }
   }
@@ -80,5 +84,12 @@ export class AddDishModalComponent implements OnInit {
   close(): void
   {
     this.dialogRef.close();
+  }
+
+  openAlertDialog(alertText: string): void
+  {
+    this.dialog.open(AlertModalComponent, {
+      data: alertText
+    });
   }
 }

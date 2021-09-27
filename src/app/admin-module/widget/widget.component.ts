@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {select, Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-widget',
@@ -8,9 +7,8 @@ import {select, Store} from "@ngrx/store";
 })
 export class WidgetComponent implements OnInit {
 
-  constructor( private store$: Store ) { }
+  constructor( ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

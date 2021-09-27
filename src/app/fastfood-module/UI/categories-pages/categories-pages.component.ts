@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { Store } from '@ngrx/store';
-import { HttpClient } from "@angular/common/http";
 
-import { IState } from "../../Interfaces/IState";
+import { IState } from "../../../shared/Interfaces/IState";
 import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
 import { AddToOrder } from "../../../shared/store/actions/orderAction";
-import { ICategory } from "../../Interfaces/ICategory";
-import { IDish } from "../../Interfaces/IDish";
+import { ICategory } from "../../../shared/Interfaces/ICategory";
+import { IDish } from "../../../shared/Interfaces/IDish";
 import { DishCategoriesService } from "../../../shared/services/dish-categories.service";
 import { DishListService } from "../../../shared/services/dish-list.service";
 import { orderListService } from "../../../shared/services/order-list.service";
-import { IIngredient } from "../../Interfaces/IIngredient";
+import { IIngredient } from "../../../shared/Interfaces/IIngredient";
 
 @Component({
   selector: 'app-categories-pages',
@@ -24,8 +23,7 @@ export class CategoriesPagesComponent implements OnInit {
   dishList: Array<IDish> = [];
   orderList: Array<IDish> = [];
 
-  constructor( private http: HttpClient,
-               private dishCategories: DishCategoriesService,
+  constructor( private dishCategories: DishCategoriesService,
                private dishListService: DishListService,
                private orderListService: orderListService,
                public dialog: MatDialog,

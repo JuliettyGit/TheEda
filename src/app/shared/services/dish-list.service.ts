@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { IDish } from "../../fastfood-module/Interfaces/IDish";
-import { IIngredient } from "../../fastfood-module/Interfaces/IIngredient";
+import { IDish } from "../Interfaces/IDish";
+import { IIngredient } from "../Interfaces/IIngredient";
 
 @Injectable()
 export class DishListService {

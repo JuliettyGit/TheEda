@@ -62,4 +62,11 @@
   width: 0;
 }
 
+.totalPrice {
+  text-align: center;
+  background: #86dc86;
+  color: aliceblue;
+  margin-bottom: 0;
+}
+
 /*# sourceMappingURL=order-page.component.css.map */

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from "@angular/forms";
-import {MyErrorStateMatcher} from "../login-page/MyErrorStateMatcher";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
+import { AdminListService } from "../../../shared/services/admin-list.service";
+import { UserListService } from "../../../shared/services/user-list.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-page',
@@ -11,15 +13,49 @@ import {MyErrorStateMatcher} from "../login-page/MyErrorStateMatcher";
 export class RegisterPageComponent implements OnInit {
 
   hide = true;
-  constructor() { }
+  userName!: string;
+  userEmail!: string;
+  password!: string;
+  secondPasswordEnter!: string;
+  checked: boolean = false;
 
-  ngOnInit(): void {
-  }
+  constructor( private adminListService: AdminListService,
+               private userListService: UserListService,
+               private router: Router ) { }
 
+  ngOnInit(): void {}
+
+  nameFormControl = new FormControl('', [Validators.required]);
+  passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
+  secondPasswordFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
-  matcher = new MyErrorStateMatcher();
+  onSubmit(name: string, email: string, password: string, secondPasswordEnter: string, isAdmin: boolean)
+  {
+    if(password == secondPasswordEnter)
+    {
+      this.signUp(name, email, password, isAdmin)
+    }
+  }
+
+  signUp(name: string, email: string, password: string, isAdmin: boolean)
+  {
+    if(isAdmin)
+    {
+      this.adminListService.addNewAdmin(name, email, password)
+        .subscribe(() => {
+          this.router.navigate(['login']);
+        });
+    }
+    else
+    {
+      this.userListService.addNewUser(name, email, password)
+        .subscribe(() => {
+          this.router.navigate(['/login']);
+        })
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { IDish } from "../../../fastfood-module/Interfaces/IDish";
+import { IDish } from "../../Interfaces/IDish";
 
 export enum userActionsType {
   AddToOrder = '[APP] add dish to order list',

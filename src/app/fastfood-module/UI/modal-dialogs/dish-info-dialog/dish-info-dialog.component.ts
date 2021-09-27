@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import {Dish} from "../../../../shared/Entities/Dish";
-import {AddToOrder} from "../../../../shared/store/actions/orderAction";
-import {Store} from "@ngrx/store";
-import {IState} from "../../../Interfaces/IState";
-import {IDish} from "../../../Interfaces/IDish";
+import { Store } from "@ngrx/store";
+
+import { AddToOrder } from "../../../../shared/store/actions/orderAction";
+import { IState } from "../../../../shared/Interfaces/IState";
+import { IDish } from "../../../../shared/Interfaces/IDish";
 
 @Component({
   selector: 'app-dish-info-dialog',
@@ -18,15 +18,15 @@ export class DishInfoDialogComponent implements OnInit {
               public data: IDish,
               private store$: Store<IState>){ }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   close(): void
   {
     this.dialogRef.close();
   }
 
-  addToOrder(dish: IDish) {
+  addToOrder(dish: IDish)
+  {
     this.store$.dispatch(new AddToOrder(dish));
   }
 }
