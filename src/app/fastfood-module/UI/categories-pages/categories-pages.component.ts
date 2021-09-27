@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Repository} from "../../Repository/Repository";
-import { Dish } from "../../Entities/Dish";
+import { MatDialog } from "@angular/material/dialog";
+import { Store } from '@ngrx/store';
+
+import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
+import { AddToOrder } from "../../../shared/store/actions/orderAction";
+import { ICategory } from "../../../shared/Interfaces/ICategory";
+import { IDish } from "../../../shared/Interfaces/IDish";
+import { DishCategoriesService } from "../../../shared/services/dish-categories.service";
+import { DishListService } from "../../../shared/services/dish-list.service";
+import { orderListService } from "../../../shared/services/order-list.service";
+import { IIngredient } from "../../../shared/Interfaces/IIngredient";
+import { IOrderState } from "../../../shared/Interfaces/IOrderState";
 
 @Component({
   selector: 'app-categories-pages',
@@ -9,10 +19,51 @@ import { Dish } from "../../Entities/Dish";
 })
 export class CategoriesPagesComponent implements OnInit {
 
-  allDishes: Array<Dish> = new Repository().dishes;
+  categories: Array<ICategory> = [];
+  dishList: Array<IDish> = [];
+  orderList: Array<IDish> = [];
 
-  constructor() { }
+  constructor( private dishCategories: DishCategoriesService,
+               private dishListService: DishListService,
+               private orderListService: orderListService,
+               public dialog: MatDialog,
+               private store$: Store<IOrderState>) {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit()
+  {
+    this.dishCategories.getDishCategories()
+      .subscribe((categories: ICategory[]) => {
+        this.categories = categories
+      });
 
+    this.dishListService.getDishList()
+      .subscribe((dishes: IDish[]) => {
+        this.dishList = dishes
+      });
+  }
+
+  openInfoDialog(dish: IDish) {
+    this.dialog.open(DishInfoDialogComponent, {
+      data: {
+        name: dish.name,
+        img: dish.img,
+        price: dish.price,
+        ingredients: dish.ingredients,
+        category: dish.category
+      }
+    });
+  }
+
+  addToOrder(dish: IDish, name: string, img: string, price: number, ingredients: Array<IIngredient>, category: string)
+  {
+    this.orderListService.addToOrderList(name, img, price, ingredients, category)
+      .subscribe((dish: IDish) => {
+        this.orderList.push(dish)
+      });
+
+    window.location.reload();
+
+    this.store$.dispatch(new AddToOrder(dish));
+  }
 }

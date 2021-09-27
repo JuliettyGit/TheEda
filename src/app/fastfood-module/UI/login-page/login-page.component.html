@@ -1,11 +1,10 @@
-<form class="example-form p-3"
-      (ngSubmit)="onSubmit()">
-  <mat-card-header>
-    <mat-card-title>Log in</mat-card-title>
+<form class="login-form">
+  <mat-card-header class="center">
+    <mat-card-title class="loginTitle">Log in</mat-card-title>
   </mat-card-header>
 
   <mat-form-field
-    class="example-full-width"
+    class="full-width"
     appearance="fill">
 
     <mat-label>Email</mat-label>
@@ -14,7 +13,7 @@
            id="email"
            matInput
            [formControl]="emailFormControl"
-           [errorStateMatcher]="matcher"
+           [(ngModel)]="userEmail"
            placeholder="Ex. pat@example.com">
 
     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -27,13 +26,14 @@
 
   </mat-form-field>
 
-  <mat-form-field class="example-full-width"
+  <mat-form-field class="full-width"
                   appearance="fill">
 
     <mat-label>Enter your password</mat-label>
 
     <input matInput
            id="password"
+           [(ngModel)]="password"
            [formControl]="passwordFormControl"
            [type]="hide ? 'password' : 'text'">
 
@@ -52,16 +52,19 @@
     <mat-error *ngIf="passwordFormControl.hasError('required')">
       Password is <strong>required</strong>
     </mat-error>
-
   </mat-form-field>
-  <div class="example-button-row">
+
+  <section class="section">
+    <mat-checkbox class="margin" name="isAdmin" [(ngModel)]="checked">I am admin</mat-checkbox>
+  </section>
+  <div class="button-row">
     <button mat-raised-button
             color="accent"
-            type="submit">Lon in
+            [disabled]="!userEmail || emailFormControl.hasError('email') || passwordFormControl.hasError('minlength') || !password"
+            (click)="onSubmit(userEmail, password, checked)">Lon in
     </button>
-    <button mat-raised-button
-            color="primary"
-            routerLink="/register">Sign up
-    </button>
+  </div>
+  <div class="center">
+    <a>New user? Click to <b routerLink="/register" class="link">sign up</b></a>
   </div>
 </form>

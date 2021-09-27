@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <h2><a routerLink="/TheEda">TheEda</a></h2>
+
+  <div class="right">
+    <button mat-icon-button class="right" routerLink="/order">
+      <mat-icon [matBadgeHidden]="orderList.length === 0"
+                [matBadge]="orderList.length"
+                matBadgeColor="accent">shopping_cart
+      </mat-icon>
+    </button>
+
+    <button mat-icon-button class="right">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-stroked-button
+            routerLinkActive="active"
+            routerLink="/login"
+            color="accent">Log in
+    </button>
+    <button mat-stroked-button
+            routerLinkActive="active"
+            routerLink="/register"
+            color="primary">Sign up
+    </button>
+  </div>
+
+</mat-toolbar>

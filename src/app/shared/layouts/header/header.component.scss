@@ -1,0 +1,22 @@
+a{
+  color: purple;
+  text-decoration: none;
+}
+
+:host ::ng-deep .mat-toolbar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2em;
+  padding-right: 2em;
+  button{
+    margin-right: 1em;
+    :last-child{
+      margin-right: 0;
+    }
+    :first-child{
+      margin-right: 0;
+    }
+  }
+}
+

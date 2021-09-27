@@ -1,29 +1,36 @@
 <mat-tab-group mat-align-tabs="center"
-               color="primary"
-               backgroundColor="accent">
-  <mat-tab label="Pizza">
+               color="accent"
+               backgroundColor="primary"
+               class="my-tab-group">
+  <mat-tab *ngFor="let category of categories" label="{{category.name}}">
 
-    <mat-card class="dish-card" *ngFor="let dish of allDishes">
-      <img mat-card-image src="{{dish.img}}" alt="Photo of a Shiba Inu">
-      <mat-card-title>{{dish.name}}</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      <mat-card-header>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>ORDER</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-
+    <ng-container *ngFor="let dish of dishList">
+      <ng-container *ngIf="dish.category == category.name">
+        <mat-card>
+          <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
+          <mat-card-title>{{dish.name}}
+            <mat-icon (click)="openInfoDialog(dish)"
+                      matTooltip="Show details"
+                      color="primary">
+              info
+            </mat-icon>
+          </mat-card-title>
+          <mat-card-content>
+            <p>
+              <mat-chip-list aria-label="Fish selection">
+                <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}</mat-chip>
+              </mat-chip-list>
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button class="price">{{dish.price}} $</button>
+            <button mat-stroked-button
+                    color="accent"
+                    (click)="addToOrder(dish, dish.name, dish.img, dish.price, dish.ingredients, dish.category)">Order
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </ng-container>
   </mat-tab>
-
-  <mat-tab label="Burgers"> Content 2 </mat-tab>
-  <mat-tab label="Deserts"> Content 3 </mat-tab>
 </mat-tab-group>

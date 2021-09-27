@@ -1,0 +1,72 @@
+<mat-tab-group mat-align-tabs="center"
+               color="accent"
+               backgroundColor="primary">
+  <mat-tab *ngFor="let category of categories, let i = index" label="{{i+1}} - {{category.name}}">
+    <mat-card>
+      <mat-card-title>Enter a number of category, which you want to delete</mat-card-title>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a number</mat-label>
+        <input matInput
+               name="categoryToDelete"
+               [(ngModel)]="categoryToDelete"
+               autocomplete="off"
+               [formControl]="categoryToDeleteId"
+               required>
+        <mat-error *ngIf="categoryToDeleteId.invalid">Cannot delete category without number</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary"
+              [disabled]="categoryToDeleteId.invalid"
+              (click)="deleteCategory(categoryToDelete)">Delete Category
+      </button>
+
+    </mat-card>
+
+    <mat-card>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter new category name</mat-label>
+        <input matInput
+               name="newDishName"
+               [(ngModel)]="newCategoryName"
+               autocomplete="off"
+               [formControl]="categoryName"
+               required
+               (keydown.enter)="addNewCategory(newCategoryName)">
+        <mat-error *ngIf="categoryName.invalid">Cannot add category without name</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary"
+              [disabled]="categoryName.invalid"
+              (click)="addNewCategory(newCategoryName)">Add New Category
+      </button>
+    </mat-card>
+
+    <button mat-raised-button color="primary" (click)="openAddNewDishDialog()">Add New Dish</button>
+
+    <ng-container *ngFor="let dish of dishList, let i = index">
+      <ng-container *ngIf="dish.category == category.name">
+        <mat-card>
+          <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
+          <mat-card-title>{{i + 1}} - {{dish.name}}
+          </mat-card-title>
+          <mat-card-content>
+            <p>
+              <mat-chip-list aria-label="Fish selection">
+                <mat-chip *ngFor="let ingredient of dish.ingredients">{{ingredient.name}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button class="price">{{dish.price}} $</button>
+            <button mat-stroked-button
+                    color="accent"
+                    (click)="deleteDish(dish.id)">Delete dish
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </ng-container>
+  </mat-tab>
+
+
+</mat-tab-group>

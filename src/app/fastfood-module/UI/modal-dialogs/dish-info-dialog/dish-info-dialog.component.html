@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <img mat-card-image src="{{data.img}}" alt="{{data.name}}">
+  <p>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip *ngFor="let ingredient of data.ingredients">{{ingredient.name}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button
+          mat-dialog-close
+          (click)="close()">Close
+  </button>
+  <span class="price">{{data.price}} $</span>
+  <button mat-stroked-button
+          color="accent"
+          (click)="addToOrder(data)">Order
+  </button>
+</div>
