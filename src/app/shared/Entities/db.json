@@ -557,6 +557,12 @@
       "email": "juliyareimer@gmail.com",
       "password": "qwe123",
       "isAdmin": "false"
+    },
+    {
+      "name": "qwe",
+      "email": "reshetnik.nikita@gmail.com",
+      "password": "qweqweqwe",
+      "id": 2
     }
   ],
   "admins": [

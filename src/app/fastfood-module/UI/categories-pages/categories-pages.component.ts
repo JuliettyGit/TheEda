@@ -15,7 +15,7 @@ import { IOrderState } from "../../../shared/Interfaces/IOrderState";
 @Component({
   selector: 'app-categories-pages',
   templateUrl: './categories-pages.component.html',
-  styleUrls: ['./categories-pages.component.scss']
+  styleUrls: ['./categories-pages.component.scss'],
 })
 export class CategoriesPagesComponent implements OnInit {
 
