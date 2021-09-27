@@ -17,7 +17,7 @@ export const orderReducer = (state = initialOrderState, action: OrderActions) =>
     {
       return {
         ...state,
-        dishList: state.orderList.filter(dish => dish.name !== action.payload.name),
+        orderList: state.orderList.filter(dish => dish.name !== action.payload.name),
       }
     }
   }

@@ -1,4 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
+.login-form {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5em;
+  min-width: 150px;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 2em;
+  padding-right: 3em;
+  padding-left: 3em;
+  padding-bottom: 2em;
+  color: aliceblue;
+  background: #019092;
+  background: linear-gradient(0deg, #019092 0%, #7c02a6 100%);
+}
+.login-form .full-width {
+  width: 100%;
+}
+.login-form .loginTitle {
+  font-size: 35px;
+  line-height: 1.8;
+  color: aliceblue;
+}
+.login-form .example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.login-form .example-right-align {
+  text-align: right;
+}
+.login-form input.example-right-align::-webkit-outer-spin-button,
+.login-form input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+.login-form input.example-right-align {
+  -moz-appearance: textfield;
+}
+.login-form :host ::ng-deep .mat-card-header {
+  text-align: center;
+}
+.login-form :host ::ng-deep .mat-form-field-wrapper {
+  margin-top: 1em;
+}
+.login-form .button-row {
+  width: 100%;
+  text-align: right;
+  margin-top: 1em;
+}
+.login-form .button-row button {
+  margin-right: 1em;
+}
+.login-form .center {
+  text-align: center;
+}
+.login-form .center .link {
+  cursor: pointer;
+}
+
+.auth-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.auth-header .title {
+  color: purple;
+  text-decoration: none;
+}
+.auth-header button {
+  margin-right: 1em;
+}
+.auth-header button :last-child {
+  margin-right: 0;
+}
+.auth-header button :first-child {
+  margin-right: 0;
+}
+
 html, body {
   height: 100%;
 }

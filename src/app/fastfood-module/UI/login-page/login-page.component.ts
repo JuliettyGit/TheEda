@@ -7,6 +7,9 @@ import { UserListService } from "../../../shared/services/user-list.service";
 import { IUser } from "../../../shared/Interfaces/IUser";
 import { AlertModalComponent } from "../../../shared/modals/alert-modal/alert-modal.component";
 import { MatDialog } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
+import { IUserState } from "../../../shared/Interfaces/IUserState";
+import { LogIn } from "../../../shared/store/actions/userActions";
 
 @Component({
   selector: 'app-login-page',
@@ -25,7 +28,8 @@ export class LoginPageComponent implements OnInit {
   constructor( private adminListService: AdminListService,
                private userListService: UserListService,
                private router: Router,
-               public dialog: MatDialog ) { }
+               public dialog: MatDialog,
+               private store$: Store<IUserState>) { }
 
   ngOnInit(): void
   {
@@ -62,33 +66,13 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  //TODO: clean order list
-  loginAsUser(email: string, password: string)
-  {
-    if(this.usersList.some((el) =>
-      el.email === email && el.password === password))
-    {
-     this.router.navigate(['/TheEda'])
-    }
-    else if(this.usersList.some((el) =>
-      el.email === email && el.password !== password))
-    {
-      const alertText = "Wrong password";
-      this.openAlertDialog(alertText);
-    }
-    else
-    {
-      const alertText = "This user does not exist";
-      this.openAlertDialog(alertText);
-    }
-  }
-
   loginAsAdmin(email: string, password: string)
   {
     if(this.adminsList.some((el) =>
       el.email === email && el.password === password))
     {
-      this.router.navigate(['/admin'])
+      this.router.navigate(['/admin']);
+      this.store$.dispatch(new LogIn(true));
     }
     else if(this.adminsList.some((el) =>
       el.email === email && el.password !== password))
@@ -99,6 +83,27 @@ export class LoginPageComponent implements OnInit {
     else
     {
       const alertText = "This admin does not exist";
+      this.openAlertDialog(alertText);
+    }
+  }
+
+  loginAsUser(email: string, password: string)
+  {
+    if(this.usersList.some((el) =>
+      el.email === email && el.password === password))
+    {
+     this.router.navigate(['/TheEda']);
+     this.store$.dispatch(new LogIn(true));
+    }
+    else if(this.usersList.some((el) =>
+      el.email === email && el.password !== password))
+    {
+      const alertText = "Wrong password";
+      this.openAlertDialog(alertText);
+    }
+    else
+    {
+      const alertText = "This user does not exist";
       this.openAlertDialog(alertText);
     }
   }

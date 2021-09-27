@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { Store } from '@ngrx/store';
 
-import { IState } from "../../../shared/Interfaces/IState";
 import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
 import { AddToOrder } from "../../../shared/store/actions/orderAction";
 import { ICategory } from "../../../shared/Interfaces/ICategory";
@@ -11,6 +10,7 @@ import { DishCategoriesService } from "../../../shared/services/dish-categories.
 import { DishListService } from "../../../shared/services/dish-list.service";
 import { orderListService } from "../../../shared/services/order-list.service";
 import { IIngredient } from "../../../shared/Interfaces/IIngredient";
+import { IOrderState } from "../../../shared/Interfaces/IOrderState";
 
 @Component({
   selector: 'app-categories-pages',
@@ -27,7 +27,7 @@ export class CategoriesPagesComponent implements OnInit {
                private dishListService: DishListService,
                private orderListService: orderListService,
                public dialog: MatDialog,
-               private store$: Store<IState>) {
+               private store$: Store<IOrderState>) {
   }
 
   ngOnInit()
@@ -55,13 +55,14 @@ export class CategoriesPagesComponent implements OnInit {
     });
   }
 
-
   addToOrder(dish: IDish, name: string, img: string, price: number, ingredients: Array<IIngredient>, category: string)
   {
     this.orderListService.addToOrderList(name, img, price, ingredients, category)
       .subscribe((dish: IDish) => {
         this.orderList.push(dish)
       });
+
+    window.location.reload();
 
     this.store$.dispatch(new AddToOrder(dish));
   }

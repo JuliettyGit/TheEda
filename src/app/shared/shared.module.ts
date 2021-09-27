@@ -12,6 +12,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { AppRoutingModule } from "../app-routing.module";
 import { SiteLayoutComponent } from "./layouts/site-layout/site-layout.component";
 import { AlertModalComponent } from './modals/alert-modal/alert-modal.component';
+import { AuthHeaderComponent } from './layouts/auth-header/auth-header.component';
 
 
 
@@ -20,7 +21,8 @@ import { AlertModalComponent } from './modals/alert-modal/alert-modal.component'
     HeaderComponent,
     AuthLayoutComponent,
     SiteLayoutComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    AuthHeaderComponent
   ],
   imports: [
     CommonModule,

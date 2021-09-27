@@ -3,8 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Store } from "@ngrx/store";
 
 import { AddToOrder } from "../../../../shared/store/actions/orderAction";
-import { IState } from "../../../../shared/Interfaces/IState";
 import { IDish } from "../../../../shared/Interfaces/IDish";
+import {IOrderState} from "../../../../shared/Interfaces/IOrderState";
 
 @Component({
   selector: 'app-dish-info-dialog',
@@ -16,7 +16,7 @@ export class DishInfoDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DishInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA)
               public data: IDish,
-              private store$: Store<IState>){ }
+              private store$: Store<IOrderState>){ }
 
   ngOnInit(): void {}
 

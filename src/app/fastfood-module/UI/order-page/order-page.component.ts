@@ -6,6 +6,9 @@ import { orderListService } from "../../../shared/services/order-list.service";
 import { IDish } from "../../../shared/Interfaces/IDish";
 import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
 import { IIngredient } from "../../../shared/Interfaces/IIngredient";
+import { AddToOrder, deleteFromOrder } from "../../../shared/store/actions/orderAction";
+import { Store } from "@ngrx/store";
+import { IOrderState } from "../../../shared/Interfaces/IOrderState";
 
 @Component({
   selector: 'app-order-page',
@@ -16,19 +19,23 @@ export class OrderPageComponent implements OnInit {
 
   orderList: Array<IDish> = [];
   totalPrice: number = 0;
+  prices: Array<number> = [];
 
   constructor( private http: HttpClient,
                private orderListService: orderListService,
-               public dialog: MatDialog ) { }
+               public dialog: MatDialog,
+               private store$: Store<IOrderState> ) { }
 
   ngOnInit(): void
   {
     this.orderListService.getOrderList()
       .subscribe((dished: IDish[]) => {
         this.orderList = dished;
-        this.getTotalPrice(this.orderList);
+        this.orderList.forEach(dish => {
+          this.prices.push(dish.price);
+          this.getTotalPrice();
+        });
       });
-
   }
 
   openInfoDialog(dish: IDish)
@@ -51,24 +58,37 @@ export class OrderPageComponent implements OnInit {
         this.orderList.push(dish)
       });
 
-    this.getTotalPrice(this.orderList);
+    this.store$.dispatch(new AddToOrder(dish));
+    this.prices.push(dish.price)
+    this.getTotalPrice();
+    window.location.reload();
   }
 
-  removeFromOrder(dishToDeleteID: number)
+  removeFromOrder(dish: IDish, dishToDeleteID: number)
   {
     this.orderListService.deleteDish(dishToDeleteID)
       .subscribe(() =>{
         this.orderList = this.orderList.filter(dish => dish.id !== dishToDeleteID);
       });
 
-    this.getTotalPrice(this.orderList);
+    this.store$.dispatch(new deleteFromOrder(dish));
+
+    this.deletePrice(this.prices, dish.price);
+    this.getTotalPrice();
+    window.location.reload();
   }
 
-  //TODO:
-  getTotalPrice(orderList: Array<IDish>) {
-    orderList.forEach(dish => {
-
-    });
+  deletePrice(arr: Array<number>, price: number)
+  {
+    let index = arr.indexOf(price);
+    if(index > -1)
+    {
+      arr.splice(index, 1);
+    }
   }
 
+  getTotalPrice()
+  {
+    this.totalPrice = this.prices.reduce((partial_sum, a) => partial_sum + a,0);
+  }
 }

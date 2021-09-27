@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { AdminModuleModule } from "./admin-module/admin-module.module";
 import { ODER_REDUCER_NODE, orderReducer } from "./shared/store/reducers/orderReducer";
 import { orderListService } from "./shared/services/order-list.service";
+import { userReducer, USER_REDUCER_NODE } from "./shared/store/reducers/userReducer";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { orderListService } from "./shared/services/order-list.service";
     AdminModuleModule,
     HttpClientModule,
     StoreModule.forFeature(ODER_REDUCER_NODE, orderReducer),
+    StoreModule.forFeature(USER_REDUCER_NODE, userReducer),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
