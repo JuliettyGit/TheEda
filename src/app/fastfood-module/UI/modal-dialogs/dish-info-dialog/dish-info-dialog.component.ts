@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 
 import { AddToOrder } from "../../../../shared/store/actions/orderAction";
 import { IDish } from "../../../../shared/Interfaces/IDish";
-import {IOrderState} from "../../../../shared/Interfaces/IOrderState";
+import { IOrderState } from "../../../../shared/Interfaces/IOrderState";
 
 @Component({
   selector: 'app-dish-info-dialog',

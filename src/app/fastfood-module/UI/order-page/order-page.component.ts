@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { MatDialog } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
 
 import { orderListService } from "../../../shared/services/order-list.service";
 import { IDish } from "../../../shared/Interfaces/IDish";
 import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
 import { IIngredient } from "../../../shared/Interfaces/IIngredient";
 import { AddToOrder, deleteFromOrder } from "../../../shared/store/actions/orderAction";
-import { Store } from "@ngrx/store";
 import { IOrderState } from "../../../shared/Interfaces/IOrderState";
 
 @Component({
