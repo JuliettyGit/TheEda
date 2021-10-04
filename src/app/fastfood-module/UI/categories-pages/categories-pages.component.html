@@ -26,7 +26,7 @@
             <button mat-button class="price">{{dish.price}} $</button>
             <button mat-stroked-button
                     color="accent"
-                    (click)="addToOrder(dish, dish.name, dish.img, dish.price, dish.ingredients, dish.category)">Order
+                    (click)="addToOrder((dish.id).toString())">Order
             </button>
           </mat-card-actions>
         </mat-card>

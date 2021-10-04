@@ -12,7 +12,7 @@ import { SharedModule } from "./shared/shared.module";
 import { environment } from '../environments/environment';
 import { AdminModuleModule } from "./admin-module/admin-module.module";
 import { ODER_REDUCER_NODE, orderReducer } from "./shared/store/reducers/orderReducer";
-import { orderListService } from "./shared/services/order-list.service";
+import { OrderListService } from "./shared/services/order-list.service";
 import { userReducer, USER_REDUCER_NODE } from "./shared/store/reducers/userReducer";
 
 @NgModule({
@@ -33,7 +33,7 @@ import { userReducer, USER_REDUCER_NODE } from "./shared/store/reducers/userRedu
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
-      orderListService
+      OrderListService
     ],
   bootstrap: [
       AppComponent

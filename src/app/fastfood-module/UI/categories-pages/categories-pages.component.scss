@@ -4,7 +4,9 @@
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
+  //height: 100%;
+  //-ms-overflow-y: hidden;
+  //overflow: hidden;
 }
 
 :host ::ng-deep .mat-tab-body-wrapper {

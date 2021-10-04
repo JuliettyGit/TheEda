@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IDish } from "../../Interfaces/IDish";
-import { orderListService } from "../../services/order-list.service";
+import { OrderListService } from "../../services/order-list.service";
+import {IOrderDish} from "../../Interfaces/IOrderDish";
 
 @Component({
   selector: 'app-header',
@@ -11,14 +12,14 @@ import { orderListService } from "../../services/order-list.service";
 
 export class HeaderComponent implements OnInit {
 
-  orderList: Array<IDish> = [];
+  orderList: Array<IOrderDish> = [];
 
-  constructor( private orderListService: orderListService) { }
+  constructor( private orderListService: OrderListService) { }
 
   ngOnInit(): void
   {
     this.orderListService.getOrderList()
-      .subscribe((dished: IDish[]) => {
+      .subscribe((dished: IOrderDish[]) => {
         this.orderList = dished
       });
   }

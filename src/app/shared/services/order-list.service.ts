@@ -2,34 +2,33 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { IDish } from "../Interfaces/IDish";
-import { IIngredient } from "../Interfaces/IIngredient";
+import { IOrderDish } from "../Interfaces/IOrderDish";
+import { environment } from "../../../environments/environment";
+import { ApiUrls } from "../../../environments/ApiUrls";
+
 
 @Injectable()
-export class orderListService{
+export class OrderListService {
+  baseUrl = environment.baseApiUrl;
 
   constructor( private http: HttpClient ) {}
 
-    getOrderList(): Observable<IDish[]>
+    getOrderList(): Observable<IOrderDish[]>
     {
       return this.http
-        .get<IDish[]>('http://localhost:3000/orderList');
+        .get<IOrderDish[]>(`${this.baseUrl}${ApiUrls.OrderList}`);
     }
 
-  addToOrderList(name: string, img: string, price: number, ingredients: Array<IIngredient>, category: string): Observable<IDish>
+  addToOrderList(dishID: string): Observable<IOrderDish>
   {
-    const dish = {
-      name,
-      img,
-      price,
-      ingredients,
-      category
+    const orderDish = {
+      dishID: dishID
     }
-    return this.http.post<IDish>('http://localhost:3000/orderList', dish);
+    return this.http.post<IOrderDish>(`${this.baseUrl}${ApiUrls.OrderList}`, orderDish);
   }
 
   deleteDish(dishToDeleteID: number): Observable<{}>
   {
-    return this.http.delete(`http://localhost:3000/orderList/${dishToDeleteID}`)
+    return this.http.delete(`${this.baseUrl}${ApiUrls.OrderList}/${dishToDeleteID}`)
   }
 }

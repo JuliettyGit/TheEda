@@ -8,9 +8,9 @@ import { ICategory } from "../../../shared/Interfaces/ICategory";
 import { IDish } from "../../../shared/Interfaces/IDish";
 import { DishCategoriesService } from "../../../shared/services/dish-categories.service";
 import { DishListService } from "../../../shared/services/dish-list.service";
-import { orderListService } from "../../../shared/services/order-list.service";
-import { IIngredient } from "../../../shared/Interfaces/IIngredient";
+import { OrderListService } from "../../../shared/services/order-list.service";
 import { IOrderState } from "../../../shared/Interfaces/IOrderState";
+import { IOrderDish } from "../../../shared/Interfaces/IOrderDish";
 
 @Component({
   selector: 'app-categories-pages',
@@ -21,11 +21,11 @@ export class CategoriesPagesComponent implements OnInit {
 
   categories: Array<ICategory> = [];
   dishList: Array<IDish> = [];
-  orderList: Array<IDish> = [];
+  orderList: Array<IOrderDish> = [];
 
   constructor( private dishCategories: DishCategoriesService,
                private dishListService: DishListService,
-               private orderListService: orderListService,
+               private orderListService: OrderListService,
                public dialog: MatDialog,
                private store$: Store<IOrderState>) {
   }
@@ -55,15 +55,13 @@ export class CategoriesPagesComponent implements OnInit {
     });
   }
 
-  addToOrder(dish: IDish, name: string, img: string, price: number, ingredients: Array<IIngredient>, category: string)
+  addToOrder(dishID: string)
   {
-    this.orderListService.addToOrderList(name, img, price, ingredients, category)
-      .subscribe((dish: IDish) => {
+    this.orderListService.addToOrderList(dishID)
+      .subscribe((dish: IOrderDish) => {
         this.orderList.push(dish)
       });
 
-    window.location.reload();
-
-    this.store$.dispatch(new AddToOrder(dish));
+    // this.store$.dispatch(new AddToOrder(dish));
   }
 }
