@@ -9,13 +9,14 @@ import { ApiUrls } from "../../../environments/ApiUrls";
 @Injectable()
 export class AdminListService {
   baseUrl = environment.baseApiUrl;
+  private adminsUrl = `${this.baseUrl}${ApiUrls.Admins}`;
 
   constructor( private http: HttpClient ) {}
 
   getAdminsList(): Observable<IUser[]>
   {
     return this.http
-      .get<IUser[]>(`${this.baseUrl}${ApiUrls.Admins}`);
+      .get<IUser[]>(this.adminsUrl);
   }
 
   addNewAdmin(name: string, email: string, password: string): Observable<IUser>
@@ -25,12 +26,12 @@ export class AdminListService {
       email: email,
       password: password,
     }
-    return this.http.post<IUser>(`${this.baseUrl}${ApiUrls.Admins}`, admin);
+    return this.http.post<IUser>(this.adminsUrl, admin);
   }
 
   deleteAdmin(admin: number): Observable<{}>
   {
-    return this.http.delete(`${this.baseUrl}${ApiUrls.Admins}/${admin}`)
+    return this.http.delete(`${this.adminsUrl}/${admin}`)
   }
 
 }

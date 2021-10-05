@@ -9,17 +9,17 @@ import { ApiUrls } from "../../../environments/ApiUrls";
 @Injectable()
 export class DishCategoriesService {
   baseUrl = environment.baseApiUrl;
-
+  private categoryListUrl = `${this.baseUrl}${ApiUrls.CategoriesList}`
   constructor( private http: HttpClient ) {}
 
   getDishCategories(): Observable<ICategory[]>
   {
-    return this.http.get<ICategory[]>(`${this.baseUrl}${ApiUrls.CategoriesList}`);
+    return this.http.get<ICategory[]>(this.categoryListUrl);
   }
 
   removeCategory(category: number): Observable<{}>
   {
-    return this.http.delete(`${this.baseUrl}${ApiUrls.CategoriesList}/${category}`)
+    return this.http.delete(`${this.categoryListUrl}/${category}`)
   }
 
   addNewCategory(name: string): Observable<ICategory>
@@ -27,6 +27,6 @@ export class DishCategoriesService {
     const category = {
       name,
     }
-    return this.http.post<ICategory>(`${this.baseUrl}${ApiUrls.CategoriesList}`, category);
+    return this.http.post<ICategory>(this.categoryListUrl, category);
   }
 }

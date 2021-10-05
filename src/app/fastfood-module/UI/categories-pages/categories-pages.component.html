@@ -4,7 +4,7 @@
                class="my-tab-group">
   <mat-tab *ngFor="let category of categories" label="{{category.name}}">
 
-    <ng-container *ngFor="let dish of dishList">
+    <ng-container *ngFor="let dish of dishList$ | async">
       <ng-container *ngIf="dish.category == category.name">
         <mat-card>
           <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">

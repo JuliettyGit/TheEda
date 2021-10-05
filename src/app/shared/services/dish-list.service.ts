@@ -10,19 +10,20 @@ import { ApiUrls } from "../../../environments/ApiUrls";
 @Injectable()
 export class DishListService {
   baseUrl = environment.baseApiUrl;
+  private dishListUrl = `${this.baseUrl}${ApiUrls.DishList}`;
 
   constructor( private http: HttpClient) {}
 
   getDishList(): Observable<IDish[]>
   {
     return this.http
-      .get<IDish[]>(`${this.baseUrl}${ApiUrls.DishList}`);
+      .get<IDish[]>(this.dishListUrl);
   }
 
   getDish(dishID: number): Observable<IDish>
   {
     return this.http
-      .get<IDish>(`${this.baseUrl}${ApiUrls.DishList}/${dishID}`)
+      .get<IDish>(`${this.dishListUrl}/${dishID}`)
   }
 
   addNewDish(name: string, img: string, price: number, ingredients: Array<IIngredient>, category: string): Observable<IDish>
@@ -34,11 +35,11 @@ export class DishListService {
       ingredients,
       category
     }
-    return this.http.post<IDish>(`${this.baseUrl}${ApiUrls.DishList}`, dish);
+    return this.http.post<IDish>(this.dishListUrl, dish);
   }
 
   deleteDish(dishToDeleteID: number): Observable<{}>
   {
-    return this.http.delete(`${this.baseUrl}${ApiUrls.DishList}/${dishToDeleteID}`)
+    return this.http.delete(`${this.dishListUrl}/${dishToDeleteID}`)
   }
 }

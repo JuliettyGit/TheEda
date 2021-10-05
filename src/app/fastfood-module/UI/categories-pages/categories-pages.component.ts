@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { Store } from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 
 import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
 import { AddToOrder } from "../../../shared/store/actions/orderAction";
@@ -11,6 +11,9 @@ import { DishListService } from "../../../shared/services/dish-list.service";
 import { OrderListService } from "../../../shared/services/order-list.service";
 import { IOrderState } from "../../../shared/Interfaces/IOrderState";
 import { IOrderDish } from "../../../shared/Interfaces/IOrderDish";
+import { Observable } from "rxjs";
+import { dishListSelector } from "../../../shared/store/selectors/dishListSelector";
+import { LoadDishList } from "../../../shared/store/actions/dishListActions";
 
 @Component({
   selector: 'app-categories-pages',
@@ -20,14 +23,19 @@ import { IOrderDish } from "../../../shared/Interfaces/IOrderDish";
 export class CategoriesPagesComponent implements OnInit {
 
   categories: Array<ICategory> = [];
-  dishList: Array<IDish> = [];
+  // dishList: Array<IDish> = [];
+  dishList$: Observable<Array<IDish>> = this.store$.pipe(
+    select(dishListSelector),
+  );
   orderList: Array<IOrderDish> = [];
 
   constructor( private dishCategories: DishCategoriesService,
                private dishListService: DishListService,
                private orderListService: OrderListService,
                public dialog: MatDialog,
-               private store$: Store<IOrderState>) {
+               private store$: Store<IDish[]>)
+  {
+    this.store$.dispatch(new LoadDishList())
   }
 
   ngOnInit()
@@ -37,10 +45,10 @@ export class CategoriesPagesComponent implements OnInit {
         this.categories = categories
       });
 
-    this.dishListService.getDishList()
-      .subscribe((dishes: IDish[]) => {
-        this.dishList = dishes
-      });
+    // this.dishListService.getDishList()
+    //   .subscribe((dishes: IDish[]) => {
+    //     this.dishList = dishes
+    //   });
   }
 
   openInfoDialog(dish: IDish) {

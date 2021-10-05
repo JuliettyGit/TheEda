@@ -14,6 +14,9 @@ import { AdminModuleModule } from "./admin-module/admin-module.module";
 import { ODER_REDUCER_NODE, orderReducer } from "./shared/store/reducers/orderReducer";
 import { OrderListService } from "./shared/services/order-list.service";
 import { userReducer, USER_REDUCER_NODE } from "./shared/store/reducers/userReducer";
+import { DISH_LIST_REDUCER_NODE, dishListReducer } from "./shared/store/reducers/dishListReducer";
+import {EffectsModule} from "@ngrx/effects";
+import {DishListEffects} from "./shared/store/effects/dishListEffects";
 
 @NgModule({
   declarations: [
@@ -28,8 +31,10 @@ import { userReducer, USER_REDUCER_NODE } from "./shared/store/reducers/userRedu
     AdminModuleModule,
     HttpClientModule,
     StoreModule.forFeature(ODER_REDUCER_NODE, orderReducer),
+    StoreModule.forFeature(DISH_LIST_REDUCER_NODE, dishListReducer),
     StoreModule.forFeature(USER_REDUCER_NODE, userReducer),
     StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([DishListEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [

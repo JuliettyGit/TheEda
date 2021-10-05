@@ -3,5 +3,5 @@ export enum ApiUrls{
   CategoriesList = '/categories',
   OrderList = '/orderList',
   Users = '/users',
-  Admins = 'admins'
+  Admins = '/admins'
 }
