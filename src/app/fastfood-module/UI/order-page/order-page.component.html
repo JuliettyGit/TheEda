@@ -6,7 +6,7 @@
                class="my-tab-group">
   <mat-tab label="Your Order">
 
-    <mat-card *ngFor="let dish of orderList">
+    <mat-card *ngFor="let dish of orderList$ | async">
       <img mat-card-image src="{{dish.img}}" alt="{{dish.name}}">
       <mat-card-title>{{dish.name}}
         <mat-icon (click)="openInfoDialog(dish)"
@@ -23,14 +23,14 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button class="price">{{dish.price}} $</button>
+<!--        <button mat-button class="price">{{dish.price}} $</button>-->
         <button mat-raised-button
                 color="warn"
-                (click)="removeFromOrder(dish, dish.id)">-
+                (click)="deleteFromOrder(dish.id)">-
         </button>
         <button mat-raised-button
                 color="accent"
-                (click)="addToOrder(dish, dish.name, dish.img, dish.price, dish.ingredients, dish.category)">+
+                (click)="addToOrder(dish.id)">+
         </button>
       </mat-card-actions>
     </mat-card>

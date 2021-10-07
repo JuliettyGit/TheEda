@@ -6,6 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
+import { EffectsModule } from "@ngrx/effects";
 
 import { HeaderComponent } from "./layouts/header/header.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -13,6 +14,7 @@ import { AppRoutingModule } from "../app-routing.module";
 import { SiteLayoutComponent } from "./layouts/site-layout/site-layout.component";
 import { AlertModalComponent } from './modals/alert-modal/alert-modal.component';
 import { AuthHeaderComponent } from './layouts/auth-header/auth-header.component';
+import { DishListEffects } from "./store/effects/dishListEffects";
 
 
 
@@ -32,7 +34,8 @@ import { AuthHeaderComponent } from './layouts/auth-header/auth-header.component
     AppRoutingModule,
     MatBadgeModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    EffectsModule.forRoot([DishListEffects])
   ],
   exports: [
     HeaderComponent

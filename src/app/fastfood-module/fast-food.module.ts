@@ -22,8 +22,8 @@ import { DishInfoDialogComponent } from './UI/modal-dialogs/dish-info-dialog/dis
 import { OrderPageComponent } from './UI/order-page/order-page.component';
 import { DishCategoriesService } from "../shared/services/dish-categories.service";
 import { DishListService } from "../shared/services/dish-list.service";
-import {AdminListService} from "../shared/services/admin-list.service";
-import {UserListService} from "../shared/services/user-list.service";
+import { AdminListService } from "../shared/services/admin-list.service";
+import { UserListService } from "../shared/services/user-list.service";
 
 @NgModule({
     declarations: [

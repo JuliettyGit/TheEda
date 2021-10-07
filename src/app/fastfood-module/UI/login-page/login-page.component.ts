@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
 
 import { AdminListService } from "../../../shared/services/admin-list.service";
 import { UserListService } from "../../../shared/services/user-list.service";
 import { IUser } from "../../../shared/Interfaces/IUser";
 import { AlertModalComponent } from "../../../shared/modals/alert-modal/alert-modal.component";
-import { MatDialog } from "@angular/material/dialog";
-import { Store } from "@ngrx/store";
 import { IUserState } from "../../../shared/Interfaces/IUserState";
 import { LogIn } from "../../../shared/store/actions/userActions";
 

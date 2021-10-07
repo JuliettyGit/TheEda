@@ -10,14 +10,14 @@ export const userReducer = (state = initialUserState, action: UserActions) =>
     case userNotificationsActionsType.logIn: {
       return {
         ...state,
-        userInSystem: state.userInSystem
+        userInSystem: action.payload
       }
     }
     case userNotificationsActionsType.logOut:
     {
       return {
         ...state,
-        userInSystem: state.userInSystem
+        userInSystem: action.payload
       }
     }
   }

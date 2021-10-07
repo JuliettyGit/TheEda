@@ -1,6 +1,5 @@
-import { IDish } from "./IDish";
+import { IOrderDish } from "./IOrderDish";
 
 export interface IOrderState {
-  orderList: Array<IDish>
-
+  orderList: Array<IOrderDish>
 }

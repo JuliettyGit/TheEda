@@ -549,7 +549,16 @@
       "category": "Potato"
     }
   ],
-  "orderList": [],
+  "orderList": [
+    {
+      "dishID": 5,
+      "id": 3
+    },
+    {
+      "dishID": 5,
+      "id": 4
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -557,6 +566,12 @@
       "email": "juliyareimer@gmail.com",
       "password": "qwe123",
       "isAdmin": "false"
+    },
+    {
+      "name": "qwe",
+      "email": "reshetnik.nikita@gmail.com",
+      "password": "qweqweqwe",
+      "id": 2
     }
   ],
   "admins": [

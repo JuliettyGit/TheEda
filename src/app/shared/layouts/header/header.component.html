@@ -3,8 +3,8 @@
 
   <div class="right">
     <button mat-icon-button class="right" routerLink="/order">
-      <mat-icon [matBadgeHidden]="orderList.length === 0"
-                [matBadge]="orderList.length"
+      <mat-icon [matBadgeHidden]="(orderList$ | async)?.length === 0"
+                [matBadge]="(orderList$ | async)?.length"
                 matBadgeColor="accent">shopping_cart
       </mat-icon>
     </button>

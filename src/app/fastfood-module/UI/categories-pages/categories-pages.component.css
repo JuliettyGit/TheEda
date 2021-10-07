@@ -4,7 +4,6 @@
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
 }
 
 :host ::ng-deep .mat-tab-body-wrapper {

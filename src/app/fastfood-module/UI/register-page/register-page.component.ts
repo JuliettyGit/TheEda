@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
 
 import { AdminListService } from "../../../shared/services/admin-list.service";
 import { UserListService } from "../../../shared/services/user-list.service";
-import {Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {IUser} from "../../../shared/Interfaces/IUser";
-import {AlertModalComponent} from "../../../shared/modals/alert-modal/alert-modal.component";
+import { IUser } from "../../../shared/Interfaces/IUser";
+import { AlertModalComponent } from "../../../shared/modals/alert-modal/alert-modal.component";
 
 @Component({
   selector: 'app-register-page',
