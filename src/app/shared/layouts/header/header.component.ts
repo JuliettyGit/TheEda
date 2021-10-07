@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { IDish } from "../../Interfaces/IDish";
 import { OrderListService } from "../../services/order-list.service";
 import {IOrderDish} from "../../Interfaces/IOrderDish";
+import {Observable} from "rxjs";
+import {select, Store} from "@ngrx/store";
+import {orderedDishesSelector} from "../../store/selectors/orderSelector";
 
 @Component({
   selector: 'app-header',
@@ -10,17 +13,13 @@ import {IOrderDish} from "../../Interfaces/IOrderDish";
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  orderList: Array<IOrderDish> = [];
+  orderList$: Observable<IDish[]> = this.store$.pipe(
+    select(orderedDishesSelector),
+  );
 
-  constructor( private orderListService: OrderListService) { }
+  constructor( private orderListService: OrderListService,
+               private store$: Store ) {}
 
-  ngOnInit(): void
-  {
-    this.orderListService.getOrderList()
-      .subscribe((dished: IOrderDish[]) => {
-        this.orderList = dished
-      });
-  }
 }

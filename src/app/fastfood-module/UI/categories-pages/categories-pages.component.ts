@@ -9,7 +9,6 @@ import { IDish } from "../../../shared/Interfaces/IDish";
 import { DishCategoriesService } from "../../../shared/services/dish-categories.service";
 import { DishListService } from "../../../shared/services/dish-list.service";
 import { OrderListService } from "../../../shared/services/order-list.service";
-import { IOrderState } from "../../../shared/Interfaces/IOrderState";
 import { IOrderDish } from "../../../shared/Interfaces/IOrderDish";
 import { Observable } from "rxjs";
 import { dishListSelector } from "../../../shared/store/selectors/dishListSelector";
@@ -23,23 +22,23 @@ import { LoadDishList } from "../../../shared/store/actions/dishListActions";
 export class CategoriesPagesComponent implements OnInit {
 
   categories: Array<ICategory> = [];
-  // dishList: Array<IDish> = [];
   dishList$: Observable<Array<IDish>> = this.store$.pipe(
     select(dishListSelector),
   );
-  orderList: Array<IOrderDish> = [];
+  // orderList: Array<IOrderDish> = [];
 
   constructor( private dishCategories: DishCategoriesService,
                private dishListService: DishListService,
                private orderListService: OrderListService,
-               public dialog: MatDialog,
+               public  dialog: MatDialog,
                private store$: Store<IDish[]>)
   {
-    this.store$.dispatch(new LoadDishList())
   }
 
   ngOnInit()
   {
+    this.store$.dispatch(new LoadDishList());
+
     this.dishCategories.getDishCategories()
       .subscribe((categories: ICategory[]) => {
         this.categories = categories
@@ -63,13 +62,9 @@ export class CategoriesPagesComponent implements OnInit {
     });
   }
 
-  addToOrder(dishID: string)
+  addToOrder(dishID: number)
   {
-    this.orderListService.addToOrderList(dishID)
-      .subscribe((dish: IOrderDish) => {
-        this.orderList.push(dish)
-      });
-
-    // this.store$.dispatch(new AddToOrder(dish));
+    this.store$.dispatch(AddToOrder({dishID}));
   }
+
 }

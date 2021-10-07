@@ -20,15 +20,15 @@ export class OrderListService {
         .get<IOrderDish[]>(this.orderListUrl);
     }
 
-  addToOrderList(dishID: string): Observable<IOrderDish>
+  addToOrderList(dishID: number): Observable<IOrderDish>
   {
     const orderDish = {
       dishID: dishID
     }
-    return this.http.post<IOrderDish>(this.orderListUrl, orderDish);
+    return this.http.post<IOrderDish>(this.orderListUrl, orderDish)
   }
 
-  deleteDish(dishToDeleteID: number): Observable<{}>
+  deleteFromOrderList(dishToDeleteID: number): Observable<{}>
   {
     return this.http.delete(`${this.orderListUrl}/${dishToDeleteID}`)
   }

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { MatDialog } from "@angular/material/dialog";
-import { Store } from "@ngrx/store";
-import { forkJoin } from 'rxjs';
-import {map, mergeMap} from 'rxjs/operators';
+import { select, Store } from "@ngrx/store";
+import { Observable } from 'rxjs';
 
 import { OrderListService } from "../../../shared/services/order-list.service";
 import { IDish } from "../../../shared/Interfaces/IDish";
 import { DishInfoDialogComponent } from "../modal-dialogs/dish-info-dialog/dish-info-dialog.component";
-import { AddToOrder, deleteFromOrder } from "../../../shared/store/actions/orderAction";
-import { IOrderState } from "../../../shared/Interfaces/IOrderState";
-import { IOrderDish } from "../../../shared/Interfaces/IOrderDish";
+import { AddToOrder, DeleteFromOrder, LoadOrderList } from "../../../shared/store/actions/orderAction";
 import { DishListService } from "../../../shared/services/dish-list.service";
+import { orderedDishesSelector, orderListSelector } from "../../../shared/store/selectors/orderSelector";
+import { LoadDishList } from "../../../shared/store/actions/dishListActions";
+import { IOrderDish } from "../../../shared/Interfaces/IOrderDish";
 
 @Component({
   selector: 'app-order-page',
@@ -20,8 +20,9 @@ import { DishListService } from "../../../shared/services/dish-list.service";
 })
 export class OrderPageComponent implements OnInit {
 
-  orderList: Array<IOrderDish> = [];
-  orderListView: Array<IDish> = [];
+  orderList$: Observable<IDish[]> = this.store$.pipe(
+    select(orderedDishesSelector),
+  ); //map
 
   totalPrice: number = 0;
   prices: Array<number> = [];
@@ -29,27 +30,14 @@ export class OrderPageComponent implements OnInit {
   constructor( private http: HttpClient,
                private orderListService: OrderListService,
                private dishListService: DishListService,
-               public dialog: MatDialog,
-               private store$: Store<IOrderState> ) { }
+               public  dialog: MatDialog,
+               private store$: Store )
+  {}
 
   ngOnInit()
   {
-    this.orderListService.getOrderList().pipe(
-      map((orderList) => {
-        this.orderList = orderList;
-        return orderList;
-      }),
-      mergeMap((orderList: IOrderDish[]) =>
-        forkJoin(orderList.map(dish => this.dishListService.getDish(Number(dish.dishID))))
-      ),
-    )
-      .subscribe((orderedDishes: IDish[]) => {
-        this.orderListView = orderedDishes;
-        this.orderListView.forEach(dish => {
-          this.prices.push(dish.price);
-          this.getTotalPrice();
-        });
-      });
+    this.store$.dispatch(LoadOrderList());
+    this.store$.dispatch(new LoadDishList());
   }
 
   openInfoDialog(dish: IDish)
@@ -65,49 +53,30 @@ export class OrderPageComponent implements OnInit {
     });
   }
 
-  addToOrder(dishPrice: number, dishID: string)
+  addToOrder(dishID: number)
   {
-    this.orderListService.addToOrderList(dishID)
-      .subscribe((dish: IOrderDish) => {
-        this.orderList.push(dish)
-      });
-
-    // this.store$.dispatch(new AddToOrder(dish));
-    this.prices.push(dishPrice)
-    this.getTotalPrice();
+    this.store$.dispatch(AddToOrder({dishID}));
   }
 
-  removeFromOrder(dishPrice: number, dishID: string)
+  deleteFromOrder(dishID: number)
   {
-    let dishToDelete= this.orderList.find(dish => dish.dishID === dishID);
+   const orderList$: Observable<IOrderDish[]> = this.store$.pipe(
+      select(orderListSelector),
+    );
+
+    let orderList: Array<IOrderDish> = [];
+
+      orderList$.subscribe((dishes: IOrderDish[]) => {
+        orderList = dishes
+        })
+
+    let dishToDelete = orderList.find(dish => dish.dishID === dishID);
 
     if(dishToDelete)
     {
-      let dishToDeleteID = dishToDelete.id;
-      this.orderListService.deleteDish(dishToDeleteID)
-        .subscribe(() =>{
-          this.orderList = this.orderList.filter(dish => dish.id !== dishToDeleteID);
-        });
-
-      this.deletePrice(this.prices, dishPrice);
-      this.getTotalPrice();
-    }
-
-    // this.store$.dispatch(new deleteFromOrder(dish));
-    // window.location.reload();
-  }
-
-  deletePrice(arr: Array<number>, price: number)
-  {
-    let index = arr.indexOf(price);
-    if(index > -1)
-    {
-      arr.splice(index, 1);
+      let dishID = dishToDelete.id;
+      this.store$.dispatch(DeleteFromOrder({dishID}));
     }
   }
 
-  getTotalPrice()
-  {
-    this.totalPrice = this.prices.reduce((partial_sum, a) => partial_sum + a,0);
-  }
 }

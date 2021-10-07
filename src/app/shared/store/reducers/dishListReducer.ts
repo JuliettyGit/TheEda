@@ -19,4 +19,4 @@ export const dishListReducer = (state = initialDishListState, action: DishListAc
     default:
       return state;
   }
-}
+};

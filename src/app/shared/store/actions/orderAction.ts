@@ -1,20 +1,70 @@
-import { Action } from "@ngrx/store";
-import { IDish } from "../../Interfaces/IDish";
+import {Action, createAction, props} from "@ngrx/store";
 
-export enum userActionsType {
-  AddToOrder = '[APP] add dish to order list',
-  deleteFromOrder = '[APP] delete dish from order list'
+import { IOrderDish } from "../../Interfaces/IOrderDish";
+
+
+export enum OrderListActionsType {
+  LoadOrderList = '[Order list] Load Order List',
+  OrderListLoadedSuccess = '[Order list] Order List Loaded Success',
+  OrderListLoadedError = '[Order list] Order List Loaded Error',
+
+  AddToOrder = '[Order list] Add Dish To Order List',
+  AddedToOrderSuccess = '[Order List] Added To Order Success',
+  AddedToOrderError = '[Order List] Added To Order Error',
+
+  DeleteFromOrder = '[Order list] Delete Dish From Order List',
+  DeleteFromOrderSuccess = '[order List] Delete Dish from Order List Success',
+  DeleteFromOrderError = '[order List] Delete Dish from Order List Error',
 }
 
-export class AddToOrder implements Action {
-  readonly type = userActionsType.AddToOrder;
-  constructor(public payload: IDish) {}
+export const LoadOrderList = createAction(
+  OrderListActionsType.LoadOrderList
+)
+
+export class OrderListLoadedSuccess implements Action {
+  readonly type = OrderListActionsType.OrderListLoadedSuccess;
+
+  constructor(public payload: { orderList: IOrderDish[] }) {
+  }
 }
 
-export class deleteFromOrder implements Action {
-  public readonly type = userActionsType.deleteFromOrder;
-  constructor(public payload: IDish)
-  {}
+export class OrderListLoadedError implements Action {
+  readonly type = OrderListActionsType.OrderListLoadedError;
 }
 
-export type OrderActions = AddToOrder | deleteFromOrder;
+export const AddToOrder = createAction(
+  OrderListActionsType.AddToOrder,
+  props<{ dishID: number }>()
+);
+
+export class AddedToOrderSuccess implements Action {
+  readonly type = OrderListActionsType.AddedToOrderSuccess;
+
+  constructor(public payload: { orderList: IOrderDish }) {
+  }
+}
+
+export class AddToOrderError implements Action {
+  readonly type = OrderListActionsType.AddedToOrderError;
+}
+
+export const DeleteFromOrder = createAction(
+  OrderListActionsType.DeleteFromOrder,
+  props<{ dishID: number }>()
+)
+
+export class DeleteFromOrderSuccess implements Action {
+  public readonly type = OrderListActionsType.DeleteFromOrderSuccess;
+
+  constructor(public payload: { id: number }) {
+  }
+}
+
+export class DeleteFromOrderError implements Action {
+  public readonly type = OrderListActionsType.DeleteFromOrderError;
+}
+
+
+export type OrderListActions = typeof LoadOrderList | OrderListLoadedSuccess | OrderListLoadedError |
+                               typeof AddToOrder | AddedToOrderSuccess | AddToOrderError |
+                               typeof DeleteFromOrder | DeleteFromOrderSuccess | DeleteFromOrderError;

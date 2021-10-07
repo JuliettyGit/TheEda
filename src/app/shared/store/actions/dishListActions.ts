@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import {IDish} from "../../Interfaces/IDish";
+import { IDish } from "../../Interfaces/IDish";
 
 export enum DishListActionsType {
   LoadDishList = '[Dish list] Load Dishes',

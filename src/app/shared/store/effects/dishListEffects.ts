@@ -10,7 +10,6 @@ import { IDish } from "../../Interfaces/IDish";
 @Injectable()
 export class DishListEffects {
 
-  @Effect()
   loadDishList$ = createEffect(
     () => this.actions$.pipe(
       ofType(DishListActionsType.LoadDishList),

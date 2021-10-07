@@ -25,8 +25,8 @@ export class DishInfoDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addToOrder(dish: IDish)
-  {
-    this.store$.dispatch(new AddToOrder(dish));
-  }
+  // addToOrder(dish: IDish)
+  // {
+  //   this.store$.dispatch(new AddToOrder(dish));
+  // }
 }
